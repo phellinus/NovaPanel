@@ -14,7 +14,7 @@ export default defineFlatConfig([
         ignores: ['**/.*', 'dist/*'],
     },
     {
-        files: ['**/*.{ts,tsx,js,jsx}'],
+        files: ['**/*.{ts,tsx,js,jsx,less}'],
         languageOptions: {
             parser: parserTs,
             parserOptions: {

@@ -14,6 +14,7 @@ const LoginPage = () => {
     return (
         <>
             <div className='_login-view'>
+
                 <h1>登录Nova Panel</h1>
                 <Form
                     layout={formLayout}
