@@ -1,0 +1,20 @@
+@reference "tailwindcss";
+
+._login-view {
+    @apply h-screen w-screen px-[160px] py-[20px] box-border;
+    .logo {
+        @apply py-[32px] box-border;
+    }
+    .title{
+        @apply text-center font-bold text-[28px] leading-[35px] drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)] mb-[22px];
+    }
+    .login-input{
+        @apply w-[448px];
+    }
+    .login-button{
+        @apply w-[448px] bg-[#1273D4];
+    }
+    .text-bottom{
+        @apply text-center text-[14px] leading-[21px] text-[#61758A];
+    }
+}

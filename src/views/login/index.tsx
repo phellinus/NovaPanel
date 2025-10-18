@@ -1,45 +1,41 @@
-import { useState } from 'react';
-import { Button, Form, Input, Radio } from 'antd';
-
-type LayoutType = Parameters<typeof Form>[0]['layout'];
+import { Button, Checkbox, type CheckboxProps, Form, Input } from 'antd';
+import './index.css';
 
 const LoginPage = () => {
     const [form] = Form.useForm();
-    const [formLayout, setFormLayout] = useState<LayoutType>('horizontal');
-
-    const onFormLayoutChange = ({ layout }: { layout: LayoutType }) => {
-        setFormLayout(layout);
+    const onFinish = () => {
+        console.log('success');
     };
-
+    const onChange: CheckboxProps['onChange'] = (e) => {
+        console.log(`checked = ${e.target.checked}`);
+    };
     return (
         <>
             <div className='_login-view'>
-
-                <h1>登录Nova Panel</h1>
+                <img src='/login-back.png' alt='logo' className='logo' />
+                <div className='title'>Welcome to Central Platform Management</div>
                 <Form
-                    layout={formLayout}
+                    layout={'vertical'}
                     form={form}
-                    initialValues={{ layout: formLayout }}
-                    onValuesChange={onFormLayoutChange}
-                    style={{ maxWidth: formLayout === 'inline' ? 'none' : 600 }}
+                    initialValues={{ layout: 'vertical', remember: true }}
+                    onFinish={onFinish}
                 >
-                    <Form.Item label='Form Layout' name='layout'>
-                        <Radio.Group value={formLayout}>
-                            <Radio.Button value='horizontal'>Horizontal</Radio.Button>
-                            <Radio.Button value='vertical'>Vertical</Radio.Button>
-                            <Radio.Button value='inline'>Inline</Radio.Button>
-                        </Radio.Group>
+                    <Form.Item label='Username'>
+                        <Input size='large' placeholder='Enter  your username' className='login-input' />
                     </Form.Item>
-                    <Form.Item label='Field A'>
-                        <Input placeholder='input placeholder' />
-                    </Form.Item>
-                    <Form.Item label='Field B'>
-                        <Input placeholder='input placeholder' />
+                    <Form.Item label='Password'>
+                        <Input size='large' placeholder='Enter  your password' className='login-input' />
                     </Form.Item>
                     <Form.Item>
-                        <Button type='primary'>Submit</Button>
+                        <Checkbox onChange={onChange}>Remember me</Checkbox>
+                    </Form.Item>
+                    <Form.Item>
+                        <Button type='primary' className='login-button'>
+                            Log In
+                        </Button>
                     </Form.Item>
                 </Form>
+                <div className='text-bottom'>Forgot password?</div>
             </div>
         </>
     );
