@@ -1,6 +1,3 @@
-import api from '../../utils/request.ts';
-
-console.log(api);
 const Welcome = () => {
     const handleStorage = (type: string) => {
         switch (type) {
