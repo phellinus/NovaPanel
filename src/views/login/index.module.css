@@ -1,6 +1,6 @@
 @reference "tailwindcss";
 
-._login-view {
+._loginView {
     @apply h-screen w-screen px-[160px] py-[20px] box-border;
     .logo {
         @apply py-[32px] box-border;
@@ -8,13 +8,13 @@
     .title{
         @apply text-center font-bold text-[28px] leading-[35px] drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)] mb-[22px];
     }
-    .login-input{
+    .loginInput{
         @apply w-[448px];
     }
-    .login-button{
+    .loginButton{
         @apply w-[448px] bg-[#1273D4];
     }
-    .text-bottom{
+    .textBottom{
         @apply text-center text-[14px] leading-[21px] text-[#61758A];
     }
 }
