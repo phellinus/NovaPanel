@@ -1,20 +1,27 @@
 @reference "tailwindcss";
 
-._loginView {
-    @apply h-screen w-screen px-[160px] py-[20px] box-border;
-    .logo {
-        @apply py-[32px] box-border;
-    }
-    .title{
-        @apply text-center font-bold text-[28px] leading-[35px] drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)] mb-[22px];
-    }
-    .loginInput{
-        @apply w-[448px];
-    }
-    .loginButton{
-        @apply w-[448px] bg-[#1273D4];
-    }
-    .textBottom{
-        @apply text-center text-[14px] leading-[21px] text-[#61758A];
+/* Login view now uses inline Tailwind classes defined in the component. */
+.login{
+    @apply relative flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-950 via-[#0B1526] to-black px-6 py-10 text-[#E6EDF7];
+    .content{
+        @apply relative z-10 flex w-full max-w-5xl overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-[0_25px_60px_rgba(8,14,35,0.35)] backdrop-blur;
+        .aside{
+            @apply hidden flex-1 flex-col justify-between bg-gradient-to-br from-[#101C34]/95 via-[#0F1B2F]/80 to-[#060B17]/80 p-10 text-[#98B0C9] lg:flex;
+            .title{
+                @apply inline-flex items-center rounded-full border border-white/10 bg-[#1273D4]/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-[#98B0C9];
+            }
+        }
+        .main{
+            @apply flex w-full max-w-md flex-col gap-8 bg-slate-950/70 px-8 py-12 sm:px-10;
+            .title{
+                @apply inline-flex items-center justify-center self-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-[#61758A] lg:self-start;
+            }
+            .input{
+                @apply h-12 rounded-xl border border-white/10 bg-white/5 text-sm text-white;
+            }
+            .button{
+                @apply h-12 rounded-xl border-0 bg-[#1273D4] text-sm font-semibold text-white shadow-[0_15px_35px_rgba(18,115,212,0.35)] transition hover:bg-[#0F65BA];
+            }
+        }
     }
 }

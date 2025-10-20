@@ -1,5 +1,6 @@
 import styles from './index.module.css';
 import { useNavigate } from 'react-router-dom';
+import Bg from '@/components/bg.tsx';
 
 const insights = [
     { label: 'Active Workspaces', value: '24', trend: '+12%' },
@@ -18,11 +19,7 @@ const Welcome = () => {
 
     return (
         <div className={styles.welcome}>
-            <div className={styles.background}>
-                <div className={styles.bgitemone} />
-                <div className={styles.bgitemtwo} />
-                <div className={styles.bgitemthree} />
-            </div>
+            <Bg />
             <div className={styles.content}>
                 <header className={styles.header}>
                     <div className='space-y-6 lg:max-w-xl'>
