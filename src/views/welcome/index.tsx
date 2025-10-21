@@ -61,7 +61,7 @@ const Welcome = () => {
                     </div>
                 </header>
 
-                <section className='grid gap-6 lg:grid-cols-3'>
+                <section className='grid gap-6 lg:grid-cols-3 mt-12'>
                     {nextSteps.map((step) => (
                         <button key={step.title} type='button' className={styles.buttonThree}>
                             <span className='rounded-full bg-[#1273D4]/15 px-3 py-1 text-xs font-semibold text-[#1273D4]'>

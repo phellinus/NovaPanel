@@ -1,27 +1,23 @@
 @reference "tailwindcss";
 
 .welcome{
-    @apply relative h-screen bg-gradient-to-br from-slate-950 via-[#0B1526] to-black px-6 py-12 text-[#E6EDF7];
-    .content{
-        @apply relative mx-auto flex max-w-6xl flex-col gap-10 rounded-3xl border border-white/10
-        bg-white/5 p-10 shadow-[0_25px_60px_rgba(8,14,35,0.35)] backdrop-blur-[20px];
-        .header{
-            @apply flex flex-col items-center gap-6 text-center lg:flex-row lg:items-start lg:justify-between lg:text-left;
-            .title{
-                @apply inline-flex items-center rounded-full border border-white/10 bg-[#1273D4]/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-[#98B0C9];
-            }
-            .buttonOne{
-                @apply cursor-pointer rounded-xl bg-[#1273D4] px-6 py-3 text-sm font-semibold text-white shadow-[0_15px_35px_rgba(18,115,212,0.35)] transition hover:bg-[#0F65BA];
-            }
-            .buttonTwo{
-                @apply cursor-pointer rounded-xl border border-white/15 px-6 py-3 text-sm font-semibold text-white/90 transition hover:border-white/30 hover:text-white;
-            }
-            .insights{
-                @apply flex w-full max-w-md flex-col gap-4 rounded-2xl border border-white/10 bg-slate-900/40 p-6 shadow-inner;
-            }
+    @apply h-full;
+    .header{
+        @apply flex flex-col items-center gap-6 text-center lg:flex-row lg:items-start lg:justify-between lg:text-left;
+        .title{
+            @apply inline-flex items-center rounded-full border border-white/10 bg-[#1273D4]/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-[#98B0C9];
         }
-        .buttonThree{
-            @apply flex h-full flex-col items-start gap-3 cursor-pointer rounded-2xl border border-white/10 bg-slate-900/30 p-6 text-left transition hover:border-[#1273D4]/40 hover:bg-slate-900/40;
+        .buttonOne{
+            @apply cursor-pointer rounded-xl bg-[#1273D4] px-6 py-3 text-sm font-semibold text-white shadow-[0_15px_35px_rgba(18,115,212,0.35)] transition hover:bg-[#0F65BA];
         }
+        .buttonTwo{
+            @apply cursor-pointer rounded-xl border border-white/15 px-6 py-3 text-sm font-semibold text-white/90 transition hover:border-white/30 hover:text-white;
+        }
+        .insights{
+            @apply flex w-full max-w-md flex-col gap-4 rounded-2xl border border-white/10 bg-slate-900/40 p-6 shadow-inner;
+        }
+    }
+    .buttonThree{
+        @apply flex h-full flex-col items-start gap-3 cursor-pointer rounded-2xl border border-white/10 bg-slate-900/30 p-6 text-left transition hover:border-[#1273D4]/40 hover:bg-slate-900/40;
     }
 }
