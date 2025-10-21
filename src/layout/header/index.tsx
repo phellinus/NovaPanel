@@ -1,6 +1,6 @@
 import styles from '@/layout/header/index.module.css';
 import { LogoutOutlined, MenuFoldOutlined, SettingOutlined } from '@ant-design/icons';
-import {Dropdown, message, Space} from 'antd';
+import { Dropdown, message, Space } from 'antd';
 import type { MenuProps } from 'antd/lib';
 import { useNavigate } from 'react-router-dom';
 import storage from '@/utils/storage.ts';

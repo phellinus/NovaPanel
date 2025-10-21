@@ -2,6 +2,7 @@ import { Layout } from 'antd';
 import styles from '@/layout/index.module.css';
 import { Outlet } from 'react-router-dom';
 import NavHeader from '@/layout/header';
+import NavFooter from '@/layout/footer';
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -19,7 +20,9 @@ export default function LayoutContainer() {
                             <Outlet />
                         </div>
                     </Content>
-                    <Footer className={styles.footer}>Footer</Footer>
+                    <Footer className={styles.footer}>
+                        <NavFooter />
+                    </Footer>
                 </Layout>
             </Layout>
         </>

@@ -15,5 +15,5 @@
     }
 }
 .footer{
-    @apply bg-sky-400;
+    @apply flex items-center justify-center text-center h-[50px] p-0;
 }

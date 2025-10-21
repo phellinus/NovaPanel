@@ -1,0 +1,5 @@
+@reference "tailwindcss";
+
+.footer{
+    @apply w-full h-full bg-gradient-to-br from-slate-950 via-[#0B1526] to-black text-[#E6EDF7] flex items-center justify-center;
+}
