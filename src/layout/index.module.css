@@ -3,6 +3,9 @@
 .layout {
     @apply relative h-screen w-screen;
 }
+.header{
+    @apply px-0 py-0;
+}
 .layoutContent{
     /*background-color: var(--dark-home-bg-color);*/
     @apply p-[20px] overflow-auto box-border flex flex-col ;

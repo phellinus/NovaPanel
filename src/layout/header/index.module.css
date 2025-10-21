@@ -1,0 +1,5 @@
+@reference "tailwindcss";
+
+.navHeader{
+    @apply flex justify-between items-center px-[10px] text-[var(--dark-text-color)];
+}
