@@ -1,9 +1,10 @@
 import styles from '@/layout/header/index.module.css';
-import { LogoutOutlined, MenuFoldOutlined, SettingOutlined } from '@ant-design/icons';
+import { LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined, SettingOutlined } from '@ant-design/icons';
 import { Dropdown, message, Space } from 'antd';
 import type { MenuProps } from 'antd/lib';
 import { useNavigate } from 'react-router-dom';
 import storage from '@/utils/storage.ts';
+import * as React from 'react';
 
 const items: MenuProps['items'] = [
     {
@@ -26,7 +27,13 @@ const items: MenuProps['items'] = [
     },
 ];
 
-export default function NavHeader() {
+export default function NavHeader({
+    collapsed,
+    setCollapsed,
+}: {
+    collapsed: boolean;
+    setCollapsed: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
     const nav = useNavigate();
     const operate = ({ key }: { key: string }) => {
         if (key == 'setting') {
@@ -41,7 +48,10 @@ export default function NavHeader() {
     return (
         <>
             <div className={styles.navHeader}>
-                <MenuFoldOutlined className='cursor-pointer' />
+                {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+                    className: 'trigger',
+                    onClick: () => setCollapsed(!collapsed),
+                })}
                 <Dropdown menu={{ items, onClick: operate }}>
                     <div className='cursor-pointer'>
                         <Space>桑榆</Space>
