@@ -1,0 +1,12 @@
+@reference "tailwindcss";
+
+.navSide{
+    @apply w-full text-[var(--dark-color)] m-0;
+}
+.logo{
+    @apply flex items-center justify-center text-[16px] bg-[var(--dark-logo-color)] text-white h-[50px]
+    leading-[50px] cursor-pointer my-[5px];
+}
+.img{
+    @apply w-[32px] h-[32px] mx-0 my-[16px]  mr-[10px];
+}

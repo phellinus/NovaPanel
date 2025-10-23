@@ -5,6 +5,7 @@ import type { MenuProps } from 'antd/lib';
 import { useNavigate } from 'react-router-dom';
 import storage from '@/utils/storage.ts';
 import * as React from 'react';
+import type { NavHeaderProps } from '@/types';
 
 const items: MenuProps['items'] = [
     {
@@ -27,13 +28,7 @@ const items: MenuProps['items'] = [
     },
 ];
 
-export default function NavHeader({
-    collapsed,
-    setCollapsed,
-}: {
-    collapsed: boolean;
-    setCollapsed: React.Dispatch<React.SetStateAction<boolean>>;
-}) {
+export default function NavHeader({ collapsed, setCollapsed }: NavHeaderProps) {
     const nav = useNavigate();
     const operate = ({ key }: { key: string }) => {
         if (key == 'setting') {

@@ -4,6 +4,7 @@ import { Outlet } from 'react-router-dom';
 import NavHeader from '@/layout/header';
 import NavFooter from '@/layout/footer';
 import { useState } from 'react';
+import SiderMenu from '@/layout/menu';
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -12,8 +13,8 @@ export default function LayoutContainer() {
     return (
         <>
             <Layout className={styles.layout}>
-                <Sider trigger={null} collapsible collapsed={collapsed}>
-                    Sider
+                <Sider trigger={null} collapsible collapsed={collapsed} className={styles.sider}>
+                    <SiderMenu collapsed={collapsed} />
                 </Sider>
                 <Layout>
                     <Header className={styles.header}>
