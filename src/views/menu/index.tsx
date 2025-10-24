@@ -1,12 +1,10 @@
-import type {FC} from "react";
+import type { FC } from 'react';
 
-const Menu:FC = () => {
+const Menu: FC = () => {
     return (
         <>
-            <div>
-                菜单管理
-            </div>
+            <div>菜单管理</div>
         </>
-    )
-}
+    );
+};
 export default Menu;

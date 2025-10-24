@@ -1,12 +1,10 @@
-import type {FC} from "react";
+import type { FC } from 'react';
 
-const User:FC = () => {
+const User: FC = () => {
     return (
         <>
-            <div>
-                用户管理
-            </div>
+            <div>用户管理</div>
         </>
-    )
-}
+    );
+};
 export default User;
