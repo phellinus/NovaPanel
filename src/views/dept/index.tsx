@@ -4,23 +4,31 @@ import { CreateDept } from '@/views/dept/createDept.tsx';
 import type { IDeptListResponse } from '@/types/list-types.ts';
 import { GetDeptListParams } from '@/api';
 import { Button, type TableColumnsType, Table, Space, Form, Input } from 'antd';
+import { formatTime } from '@/utils/utils.ts';
 
 type PopHandle = {
     open: () => void;
 };
 
 export const Dept: FC = () => {
+    //表格数据
     const [data, setData] = useState<IDeptListResponse[]>();
+    //表格加载状态
+    const [loading, setLoading] = useState<boolean>(true);
+    //表单实例
     const [form] = Form.useForm();
     const getDeptList = async () => {
+        setLoading(true);
         const res = await GetDeptListParams(form.getFieldsValue());
         setData(res);
+        setLoading(false);
     };
     //重置操作
     const handleReset = () => {
         form.resetFields();
         getDeptList();
     };
+    //组件挂载时加载数据
     useEffect(() => {
         getDeptList();
     }, []);
@@ -42,17 +50,20 @@ export const Dept: FC = () => {
             dataIndex: 'createTime',
             key: 'createTime',
             width: '200',
+            render: (time: string) => formatTime(time),
         },
         {
             title: '更新时间',
             dataIndex: 'updateTime',
             key: 'updateTime',
             width: '200',
+            render: (time: string) => formatTime(time),
         },
         {
             title: '操作',
             dataIndex: 'operation',
             key: 'operation',
+            align: 'center',
             render: (_, _record) => {
                 return (
                     <Space>
@@ -93,7 +104,14 @@ export const Dept: FC = () => {
                         新增
                     </button>
                 </div>
-                <Table className={styles.table} rowKey='_id' columns={colums} dataSource={data} pagination={false} />
+                <Table
+                    loading={loading}
+                    className={styles.table}
+                    rowKey='_id'
+                    columns={colums}
+                    dataSource={data}
+                    pagination={false}
+                />
             </div>
             <CreateDept ref={createDeptRef} />
         </>
