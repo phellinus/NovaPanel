@@ -10,6 +10,8 @@ import {
     UserOutlined,
 } from '@ant-design/icons';
 import * as React from 'react';
+import {useLocation, useNavigate} from "react-router-dom";
+import {useEffect} from "react";
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -38,7 +40,31 @@ const items: MenuItem[] = [
         getItem('部门管理', '/deptList', <LaptopOutlined />),
     ]),
 ];
+const parentMap: Record<string, string> = {
+    '/userList': '/user',
+    '/menuList': '/user',
+    '/roleList': '/user',
+    '/deptList': '/user',
+};
 const SiderMenu = ({ collapsed }: { collapsed: boolean }) => {
+    const nav = useNavigate();
+    const location = useLocation();
+    const [openKeys, setOpenKeys] = React.useState<string[]>([]);
+    const menuClick = ({ key }: { key: string}) => {
+        nav(key);
+    };
+    const setOpenChange = (openKeys: string[]) =>{
+        setOpenKeys(openKeys);
+    }
+    useEffect(() => {
+        const currentPath = location.pathname;
+        const parentKey = parentMap[currentPath];
+        if (parentKey) {
+            setOpenKeys([parentKey]);
+        } else {
+            setOpenKeys([]);
+        }
+    }, [location.pathname]);
     return (
         <>
             <div className={styles.navSide}>
@@ -47,11 +73,14 @@ const SiderMenu = ({ collapsed }: { collapsed: boolean }) => {
                     {!collapsed && '企业中台'}
                 </div>
                 <Menu
-                    defaultSelectedKeys={['1']}
-                    defaultOpenKeys={['sub1']}
+                    selectedKeys={[location.pathname]}
+                    defaultSelectedKeys={openKeys}
+                    onOpenChange={setOpenChange}
+                    openKeys={openKeys}
                     mode='inline'
                     theme='dark'
                     inlineCollapsed={collapsed}
+                    onClick={menuClick}
                     items={items}
                 />
             </div>
