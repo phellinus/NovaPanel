@@ -18,6 +18,7 @@
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router-dom": "^7.9.4",
+    "vite-plugin-inspector": "^1.0.4",
     "zustand": "^5.0.8"
   },
   "devDependencies": {
@@ -39,6 +40,7 @@
     "globals": "^16.4.0",
     "postcss": "^8.5.6",
     "prettier": "^3.6.2",
+    "react-dev-inspector": "^2.0.1",
     "tailwindcss": "^4.1.14",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.45.0",

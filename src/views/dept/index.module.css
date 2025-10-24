@@ -18,6 +18,12 @@
 .table :global(.ant-table-thead > tr > th){
     @apply border-0 border-b border-white/10 bg-transparent text-[0.75rem] uppercase tracking-[0.12em] text-slate-200 font-semibold;
 }
+.table :global(.ant-table-thead > tr > th),
+.table :global(.ant-table-thead > tr > th .ant-table-column-sorters),
+.table :global(.ant-table-thead > tr > th .ant-table-column-title){
+    @apply text-slate-100;
+    color: #e9f2ff !important;
+}
 .table :global(.ant-table-tbody > tr > td){
     @apply border-0 border-b border-white/5 text-slate-100 align-middle;
 }
@@ -37,7 +43,26 @@
     @apply border-b-0;
 }
 .table :global(.ant-table-placeholder .ant-table-cell){
-    @apply bg-transparent text-slate-400;
+    @apply bg-transparent text-slate-300;
+}
+.table :global(.ant-table-empty .ant-table-placeholder){
+    @apply bg-transparent;
+}
+.table :global(.ant-table-empty .ant-table-placeholder .ant-table-cell){
+    @apply bg-transparent;
+}
+.table :global(.ant-table-empty .ant-table-placeholder .ant-empty),
+.table :global(.ant-table-empty .ant-table-placeholder .ant-empty-image),
+.table :global(.ant-table-empty .ant-table-placeholder .ant-empty-image svg){
+    @apply text-slate-300;
+    color: #cbd7ff !important;
+    fill: rgba(203, 215, 255, 0.8) !important;
+}
+.table :global(.ant-table-empty .ant-empty-image img){
+    filter: drop-shadow(0 0 8px rgba(45, 91, 182, 0.35));
+}
+.table :global(.ant-table-empty .ant-empty-description){
+    @apply text-slate-300;
 }
 .actionButton{
     @apply inline-flex items-center justify-center rounded-xl !border-0 px-4 py-2 text-sm font-semibold tracking-wide text-white shadow-[0_15px_35px_rgba(18,115,212,0.28)] transition duration-200 ease-out hover:shadow-[0_20px_40px_rgba(18,115,212,0.45)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5CC4FF]/70 focus-visible:ring-offset-0;
@@ -46,6 +71,9 @@
     @apply bg-gradient-to-r from-[#1B4ECB] via-[#1273D4] to-[#05A3FF] hover:from-[#215FE3] hover:via-[#1476EA] hover:to-[#0DB6FF];
     background-image: linear-gradient(112deg, #1B4ECB 0%, #1273D4 50%, #05A3FF 100%) !important;
     color: #F8FBFF !important;
+}
+.table :global(.ant-table-empty .ant-table-placeholder .ant-table-cell){
+    @apply bg-gradient-to-r from-[#102C5C] via-[#1A4E9F] to-[#102C5C] hover:bg-sky-900;
 }
 .actionButtonSecondary{
     @apply bg-gradient-to-r from-[#102C5C] via-[#1A4E9F] to-[#2994F2] hover:from-[#153875] hover:via-[#1F5FBA] hover:to-[#39A9FF];
@@ -56,4 +84,10 @@
     @apply bg-gradient-to-r from-[#F25C5C] via-[#EB3D3D] to-[#FF7A45] hover:from-[#F46D6D] hover:via-[#F24B4B] hover:to-[#FF8C5E] shadow-[0_15px_35px_rgba(244,96,96,0.28)] hover:shadow-[0_20px_42px_rgba(244,96,96,0.4)];
     background-image: linear-gradient(110deg, #F25C5C 0%, #EB3D3D 45%, #FF7A45 100%) !important;
     color: #FFF6F6 !important;
+}
+.label{
+    @apply text-slate-100;
+}
+.form{
+    @apply my-3 text-white;
 }

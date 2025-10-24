@@ -2,13 +2,19 @@ import { type FC, useEffect, useState } from 'react';
 import styles from '@/views/dept/index.module.css';
 import type { IDeptListResponse } from '@/types/list-types.ts';
 import { GetDeptListParams } from '@/api';
-import { Button, type TableColumnsType, Table, Space } from 'antd';
+import { Button, type TableColumnsType, Table, Space, Form, Input } from 'antd';
 
-const Dept: FC = () => {
+export const Dept: FC = () => {
     const [data, setData] = useState<IDeptListResponse[]>();
+    const [form] = Form.useForm();
     const getDeptList = async () => {
-        const res = await GetDeptListParams({});
+        const res = await GetDeptListParams(form.getFieldsValue());
         setData(res);
+    };
+    //重置操作
+    const handleReset = () => {
+        form.resetFields();
+        getDeptList();
     };
     useEffect(() => {
         getDeptList();
@@ -62,6 +68,19 @@ const Dept: FC = () => {
     return (
         <>
             <div>
+                <Form className={styles.form} layout='inline' form={form}>
+                    <Form.Item name='deptName' label={<span className={styles.label}>部门名称：</span>}>
+                        <Input placeholder='请输入部门名称' />
+                    </Form.Item>
+                    <Form.Item>
+                        <Button type='primary' className='mr-2' onClick={getDeptList}>
+                            查询
+                        </Button>
+                        <Button type='primary' onClick={handleReset}>
+                            重置
+                        </Button>
+                    </Form.Item>
+                </Form>
                 <div className={styles.header}>
                     <div>部门管理</div>
                     <button type='button' className={styles.buttonOne}>
@@ -73,4 +92,3 @@ const Dept: FC = () => {
         </>
     );
 };
-export default Dept;
