@@ -1,8 +1,13 @@
-import { type FC, useEffect, useState } from 'react';
+import { type FC, useEffect, useRef, useState } from 'react';
 import styles from '@/views/dept/index.module.css';
+import { CreateDept } from '@/views/dept/createDept.tsx';
 import type { IDeptListResponse } from '@/types/list-types.ts';
 import { GetDeptListParams } from '@/api';
 import { Button, type TableColumnsType, Table, Space, Form, Input } from 'antd';
+
+type PopHandle = {
+    open: () => void;
+};
 
 export const Dept: FC = () => {
     const [data, setData] = useState<IDeptListResponse[]>();
@@ -65,6 +70,7 @@ export const Dept: FC = () => {
             },
         },
     ];
+    const createDeptRef = useRef<PopHandle>(null);
     return (
         <>
             <div>
@@ -83,12 +89,13 @@ export const Dept: FC = () => {
                 </Form>
                 <div className={styles.header}>
                     <div>部门管理</div>
-                    <button type='button' className={styles.buttonOne}>
+                    <button type='button' className={styles.buttonOne} onClick={() => createDeptRef.current?.open()}>
                         新增
                     </button>
                 </div>
                 <Table className={styles.table} rowKey='_id' columns={colums} dataSource={data} pagination={false} />
             </div>
+            <CreateDept ref={createDeptRef} />
         </>
     );
 };
