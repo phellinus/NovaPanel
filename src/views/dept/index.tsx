@@ -113,7 +113,7 @@ export const Dept: FC = () => {
                     pagination={false}
                 />
             </div>
-            <CreateDept ref={createDeptRef} />
+            <CreateDept ref={createDeptRef} reload={getDeptList} />
         </>
     );
 };

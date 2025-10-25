@@ -14,3 +14,9 @@ export interface NavHeaderProps {
     collapsed: boolean;
     setCollapsed: React.Dispatch<React.SetStateAction<boolean>>;
 }
+//添加部门请求参数
+export interface ICreateDeptParams {
+    deptName: string;
+    parentId: string;
+    userName: string;
+}
