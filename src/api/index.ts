@@ -18,3 +18,7 @@ export const getAllUserInfoParams = () => {
 export const createDeptData = (data: ICreateDeptParams) => {
     return request.post('/dept/create', data);
 };
+//编辑部门
+export const updateDeptData = (data: ICreateDeptParams) => {
+    return request.post('/dept/edit', data);
+};

@@ -1,10 +1,10 @@
 import { Form, Input, message, Modal, Select, TreeSelect } from 'antd';
 import { forwardRef, useImperativeHandle, useState } from 'react';
 import type { IAllUserInfoResponse, IDeptListResponse } from '@/types/list-types.ts';
-import { createDeptData, getAllUserInfoParams, GetDeptListParams } from '@/api';
+import { createDeptData, getAllUserInfoParams, GetDeptListParams, updateDeptData } from '@/api';
 
 type PopHandle = {
-    open: () => void;
+    open: (type: 'create' | 'update', data: IDeptListResponse | { parentId: string }) => void;
 };
 interface PopProps {
     reload: () => void;
@@ -14,6 +14,7 @@ export const CreateDept = forwardRef<PopHandle, PopProps>(({ reload }, ref) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [userList, setUserList] = useState<IAllUserInfoResponse[]>([]);
     const [deptList, setDeptList] = useState<IDeptListResponse[]>([]);
+    const [action, setAction] = useState<'create' | 'update'>('create');
     //获取所有部门信息
     const getDeptList = async () => {
         const res = await GetDeptListParams({});
@@ -25,13 +26,17 @@ export const CreateDept = forwardRef<PopHandle, PopProps>(({ reload }, ref) => {
         setUserList(userList);
     };
     //新增部门
-    const toCreateDept = async () => {
+    const toActionDept = async () => {
         const valid = await form.validateFields();
         if (!valid) {
             return;
         }
-        await createDeptData(form.getFieldsValue());
-        message.success('创建部门成功');
+        if (action == 'create') {
+            await createDeptData(form.getFieldsValue());
+        } else {
+            await updateDeptData(form.getFieldsValue());
+        }
+        message.success(action == 'create' ? '创建部门成功' : '编辑部门成功');
     };
     //关闭弹窗
     const onCancel = () => {
@@ -40,23 +45,34 @@ export const CreateDept = forwardRef<PopHandle, PopProps>(({ reload }, ref) => {
     };
     //确定创建部门
     const handleOk = async () => {
-        await toCreateDept();
+        await toActionDept();
         onCancel();
         reload();
     };
     useImperativeHandle(ref, () => ({
-        open: () => {
+        open: async (type: 'create' | 'update', data: IDeptListResponse | { parentId?: string }) => {
+            setAction(type);
+            if (data) {
+                form.setFieldsValue(data);
+            }
+            await getAllUserInfo();
             getDeptList().then(() => {
-                getAllUserInfo();
                 setIsModalOpen(true);
             });
         },
     }));
     return (
         <>
-            <Modal title='创建部门' width={800} open={isModalOpen} onCancel={onCancel} onOk={handleOk}>
+            <Modal
+                title={action == 'create' ? '创建部门' : '编辑部门'}
+                width={800}
+                open={isModalOpen}
+                onCancel={onCancel}
+                onOk={handleOk}
+            >
                 <Form form={form} labelAlign='right' labelCol={{ span: 4 }}>
-                    <Form.Item label='上级部门' name='parent'>
+                    <Form.Item name='_id' hidden />
+                    <Form.Item label='上级部门' name='parentId'>
                         <TreeSelect
                             placeholder='请选择上级部门'
                             allowClear

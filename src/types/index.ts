@@ -16,6 +16,7 @@ export interface NavHeaderProps {
 }
 //添加部门请求参数
 export interface ICreateDeptParams {
+    _id?: string;
     deptName: string;
     parentId: string;
     userName: string;

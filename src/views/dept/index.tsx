@@ -7,7 +7,7 @@ import { Button, type TableColumnsType, Table, Space, Form, Input } from 'antd';
 import { formatTime } from '@/utils/utils.ts';
 
 type PopHandle = {
-    open: () => void;
+    open: (type: 'create' | 'update', data: IDeptListResponse | { parentId?: string }) => void;
 };
 
 export const Dept: FC = () => {
@@ -27,6 +27,14 @@ export const Dept: FC = () => {
     const handleReset = () => {
         form.resetFields();
         getDeptList();
+    };
+    //部门下新增部门
+    const addDept = (record: IDeptListResponse) => {
+        createDeptRef.current?.open('create', { parentId: record._id });
+    };
+    //编辑部门
+    const editDept = (record: IDeptListResponse) => {
+        createDeptRef.current?.open('update', record);
     };
     //组件挂载时加载数据
     useEffect(() => {
@@ -67,10 +75,18 @@ export const Dept: FC = () => {
             render: (_, _record) => {
                 return (
                     <Space>
-                        <Button type='primary' className={`${styles.actionButton} ${styles.actionButtonPrimary}`}>
+                        <Button
+                            type='primary'
+                            className={`${styles.actionButton} ${styles.actionButtonPrimary}`}
+                            onClick={() => editDept(_record)}
+                        >
                             编辑
                         </Button>
-                        <Button type='primary' className={`${styles.actionButton} ${styles.actionButtonSecondary}`}>
+                        <Button
+                            type='primary'
+                            className={`${styles.actionButton} ${styles.actionButtonSecondary}`}
+                            onClick={() => addDept(_record)}
+                        >
                             新增
                         </Button>
                         <Button danger className={`${styles.actionButton} ${styles.actionButtonDanger}`}>
@@ -100,7 +116,11 @@ export const Dept: FC = () => {
                 </Form>
                 <div className={styles.header}>
                     <div>部门管理</div>
-                    <button type='button' className={styles.buttonOne} onClick={() => createDeptRef.current?.open()}>
+                    <button
+                        type='button'
+                        className={styles.buttonOne}
+                        onClick={() => createDeptRef.current?.open('create', {})}
+                    >
                         新增
                     </button>
                 </div>
