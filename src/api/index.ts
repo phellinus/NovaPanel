@@ -1,5 +1,5 @@
 import request from '@/utils/request';
-import type { ICreateDeptParams, IDeptParams, ILoginParams } from '@/types';
+import type { ICreateDeptParams, IDeleteDeptParams, IDeptParams, ILoginParams } from '@/types';
 import type { IAllUserInfoResponse, IDeptListResponse } from '@/types/list-types.ts';
 
 //登录接口
@@ -21,4 +21,8 @@ export const createDeptData = (data: ICreateDeptParams) => {
 //编辑部门
 export const updateDeptData = (data: ICreateDeptParams) => {
     return request.post('/dept/edit', data);
+};
+//删除部门
+export const deleteDeptData = (data: IDeleteDeptParams) => {
+    return request.post('/dept/delete', data);
 };

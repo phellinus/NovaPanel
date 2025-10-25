@@ -2,8 +2,8 @@ import { type FC, useEffect, useRef, useState } from 'react';
 import styles from '@/views/dept/index.module.css';
 import { CreateDept } from '@/views/dept/createDept.tsx';
 import type { IDeptListResponse } from '@/types/list-types.ts';
-import { GetDeptListParams } from '@/api';
-import { Button, type TableColumnsType, Table, Space, Form, Input } from 'antd';
+import { deleteDeptData, GetDeptListParams } from '@/api';
+import { Button, type TableColumnsType, Table, Space, Form, Input, Modal, message } from 'antd';
 import { formatTime } from '@/utils/utils.ts';
 
 type PopHandle = {
@@ -35,6 +35,20 @@ export const Dept: FC = () => {
     //编辑部门
     const editDept = (record: IDeptListResponse) => {
         createDeptRef.current?.open('update', record);
+    };
+    //删除部门
+    const deleteDept = async (record: IDeptListResponse) => {
+        Modal.confirm({
+            title: '确认删除部门吗？',
+            okText: '确认',
+            cancelText: '取消',
+            okType: 'danger',
+            onOk: async () => {
+                await deleteDeptData({ _id: record._id });
+                message.success('删除成功');
+                getDeptList();
+            },
+        });
     };
     //组件挂载时加载数据
     useEffect(() => {
@@ -89,7 +103,11 @@ export const Dept: FC = () => {
                         >
                             新增
                         </Button>
-                        <Button danger className={`${styles.actionButton} ${styles.actionButtonDanger}`}>
+                        <Button
+                            danger
+                            className={`${styles.actionButton} ${styles.actionButtonDanger}`}
+                            onClick={() => deleteDept(_record)}
+                        >
                             删除
                         </Button>
                     </Space>

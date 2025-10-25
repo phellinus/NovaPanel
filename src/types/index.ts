@@ -21,3 +21,7 @@ export interface ICreateDeptParams {
     parentId: string;
     userName: string;
 }
+//删除部门请求参数
+export interface IDeleteDeptParams {
+    _id: string;
+}
