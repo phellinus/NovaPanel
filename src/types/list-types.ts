@@ -17,3 +17,40 @@ export interface IAllUserInfoResponse {
     userName: string;
     userEmail: string;
 }
+
+//菜单按钮响应参数
+export interface IMenuButtonResponse {
+    __v?: number;
+    _id?: string;
+    createId?: number;
+    createTime?: string;
+    menuCode?: string;
+    menuName?: string;
+    menuState?: number;
+    menuType?: number;
+    orderBy?: number;
+    parentId?: string;
+    updateTime?: string;
+}
+export interface IMenuListChildResponse {
+    __v: number;
+    _id: string;
+    buttons?: Array<IMenuButtonResponse>;
+    children?: IMenuListChildResponse[];
+    createId: number;
+    createTime: string;
+    icon: string;
+    menuName: string;
+    menuState: number;
+    menuType: number;
+    orderBy: number;
+    parentId: string;
+    path?: string;
+    updateTime: string;
+    menuCode?: string;
+}
+//菜单列表响应参数
+export type IMenuListResponse = Omit<IMenuListChildResponse, 'menuCode'> & {
+    children: IMenuListChildResponse[];
+    path: string;
+};

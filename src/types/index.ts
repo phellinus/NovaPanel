@@ -25,3 +25,7 @@ export interface ICreateDeptParams {
 export interface IDeleteDeptParams {
     _id: string;
 }
+//获取菜单请求参数
+export interface IMenuParams {
+    menuState?: number;
+}

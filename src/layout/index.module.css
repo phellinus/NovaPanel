@@ -14,7 +14,7 @@
     @apply p-[20px] overflow-auto box-border flex flex-col ;
     .wrapper{
         @apply bg-gradient-to-br from-slate-950 via-[#0B1526] to-black text-[#E6EDF7] flex-1 relative mx-auto flex w-full flex-col rounded-3xl border border-white/10
-      p-3 shadow-[0_25px_60px_rgba(8,14,35,0.35)] backdrop-blur-[20px] overflow-hidden;
+      p-3 shadow-[0_25px_60px_rgba(8,14,35,0.35)] backdrop-blur-[20px];
     }
 }
 .footer{
