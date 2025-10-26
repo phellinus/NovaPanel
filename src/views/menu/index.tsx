@@ -1,27 +1,27 @@
 import { type FC, useEffect, useRef, useState } from 'react';
 import type { IDeptListResponse, IMenuListResponse } from '@/types/list-types.ts';
 import { Button, Form, message, Modal, Select, Space, Table, type TableColumnsType } from 'antd';
-import { deleteDeptData, getMenuListParams } from '@/api';
+import { deleteMenuData, getMenuListParams } from '@/api';
 import { formatTime } from '@/utils/utils.ts';
-import styles from '@/views/dept/index.module.css';
-import { CreateDept } from '@/views/dept/createDept.tsx';
+import styles from '@/views/menu/index.module.css';
+import { CreateMenu } from '@/views/menu/createMenu.tsx';
 import * as Icons from '@ant-design/icons';
 
 type PopHandle = {
     open: (type: 'create' | 'update', data: IDeptListResponse | { parentId?: string }) => void;
 };
 
-const muenuStatusList = [
+const menuStatusList = [
     {
-        lable: '全部',
+        label: '全部',
         value: '0',
     },
     {
-        lable: '正常',
+        label: '正常',
         value: '1',
     },
     {
-        lable: '停用',
+        label: '停用',
         value: '2',
     },
 ];
@@ -59,7 +59,7 @@ const Menu: FC = () => {
             cancelText: '取消',
             okType: 'danger',
             onOk: async () => {
-                await deleteDeptData({ _id: record._id });
+                await deleteMenuData({ _id: record._id });
                 message.success('删除成功');
                 getMenuList();
             },
@@ -184,9 +184,9 @@ const Menu: FC = () => {
                         label={<span className={styles.label}>菜单状态：</span>}
                     >
                         <Select>
-                            {muenuStatusList.map((item) => (
+                            {menuStatusList.map((item) => (
                                 <Select.Option key={item.value} value={item.value}>
-                                    {item.lable}
+                                    {item.label}
                                 </Select.Option>
                             ))}
                         </Select>
@@ -220,7 +220,7 @@ const Menu: FC = () => {
                     pagination={false}
                 />
             </div>
-            <CreateDept ref={createDeptRef} reload={getMenuList} />
+            <CreateMenu ref={createDeptRef} reload={getMenuList} />
         </>
     );
 };

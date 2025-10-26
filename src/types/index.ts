@@ -29,3 +29,21 @@ export interface IDeleteDeptParams {
 export interface IMenuParams {
     menuState?: number;
 }
+//添加菜单请求参数
+export interface ICreateMenuRequest {
+    icon: string;
+    menuName: string;
+    menuState: number;
+    menuType: number;
+    orderBy: number;
+    parentId: string;
+    path: string;
+}
+//编辑菜单请求参数
+export interface IEditMenuRequest extends ICreateMenuRequest {
+    _id: string;
+}
+//删除菜单请求参数
+export interface IDeleteMenuRequest {
+    _id: string;
+}

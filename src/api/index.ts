@@ -1,5 +1,14 @@
 import request from '@/utils/request';
-import type { ICreateDeptParams, IDeleteDeptParams, IDeptParams, ILoginParams, IMenuParams } from '@/types';
+import type {
+    ICreateDeptParams,
+    ICreateMenuRequest,
+    IDeleteDeptParams,
+    IDeleteMenuRequest,
+    IDeptParams,
+    IEditMenuRequest,
+    ILoginParams,
+    IMenuParams,
+} from '@/types';
 import type { IAllUserInfoResponse, IDeptListResponse, IMenuListResponse } from '@/types/list-types.ts';
 
 //登录接口
@@ -26,7 +35,19 @@ export const updateDeptData = (data: ICreateDeptParams) => {
 export const deleteDeptData = (data: IDeleteDeptParams) => {
     return request.post('/dept/delete', data);
 };
-//获取菜单部门列表
+//获取菜单列表
 export const getMenuListParams = (params?: IMenuParams) => {
     return request.get<IMenuListResponse[]>('/menu/list', params);
+};
+//新增菜单
+export const createMenuData = (data: ICreateMenuRequest) => {
+    return request.post('/menu/create', data);
+};
+//删除菜单
+export const deleteMenuData = (data: IDeleteMenuRequest) => {
+    return request.post('/menu/delete', data);
+};
+//编辑菜单
+export const updateMenuData = (data: IEditMenuRequest) => {
+    return request.post('/menu/edit', data);
 };
