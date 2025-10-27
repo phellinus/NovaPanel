@@ -6,15 +6,19 @@ import { deleteRoleData, getRoleListParams } from '@/api';
 import type { IRoleRequest } from '@/types';
 import { useAntdTable } from 'ahooks';
 import { RolePopup } from '@/views/role/RolePopup.tsx';
+import { SetPermissionPopup } from '@/views/role/setPermissionPopup.tsx';
 import { formatTime } from '@/utils/utils.ts';
 
 type PopHandle = {
     open: (type: 'create' | 'update', data: IRoleListResponse | { _id: string }) => void;
 };
-
+type PermissionPopupHandle = {
+    open: (data: IRoleListResponse) => void;
+};
 const Role: FC = () => {
     const [form] = Form.useForm();
     const rolePopupRef = useRef<PopHandle>(null);
+    const setPermissionPopupRef = useRef<PermissionPopupHandle>(null);
     //获取角色列表
     const getRoleList = ({ current, pageSize }: { current: number; pageSize: number }, formData: IRoleRequest) => {
         return getRoleListParams({ ...formData, pageNum: current, pageSize: pageSize }).then((res) => {
@@ -48,8 +52,8 @@ const Role: FC = () => {
         });
     };
     //设置权限
-    const handleSetPermission = (id: string) => {
-        console.log(id);
+    const handleSetPermission = (role: IRoleListResponse) => {
+        setPermissionPopupRef.current?.open(role);
     };
     //列表数据
     const columns: TableColumnsType<IRoleListResponse> = [
@@ -97,7 +101,7 @@ const Role: FC = () => {
                         <Button
                             type='primary'
                             className={`${styles.actionButton} ${styles.actionButtonSecondary}`}
-                            onClick={() => handleSetPermission(_record._id)}
+                            onClick={() => handleSetPermission(_record)}
                         >
                             设置权限
                         </Button>
@@ -141,6 +145,7 @@ const Role: FC = () => {
                 </div>
                 <Table className={styles.table} rowKey='_id' {...tableProps} columns={columns} />
                 <RolePopup ref={rolePopupRef} reload={search.submit} />
+                <SetPermissionPopup ref={setPermissionPopupRef} reload={search.submit} />
             </div>
         </>
     );

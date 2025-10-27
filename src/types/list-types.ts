@@ -68,3 +68,8 @@ export interface IRoleListResponse {
     roleName: string;
     updateTime: string;
 }
+//所有角色数据响应参数
+export interface IAllRoleListResponse {
+    _id: string;
+    roleName: string;
+}

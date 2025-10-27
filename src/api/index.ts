@@ -15,6 +15,7 @@ import type {
     ISetRolePermissionResponse,
 } from '@/types';
 import type {
+    IAllRoleListResponse,
     IAllUserInfoResponse,
     IDeptListResponse,
     IMenuListResponse,
@@ -60,6 +61,10 @@ export const deleteMenuData = (data: IDeleteMenuRequest) => {
 //编辑菜单
 export const updateMenuData = (data: IEditMenuRequest) => {
     return request.post('/menu/edit', data);
+};
+//获取所有角色数据
+export const getAllRoleData = () => {
+    return request.get<IAllRoleListResponse[]>('/roles/allList');
 };
 //查询角色
 export const getRoleListParams = (params: IRoleRequest) => {
