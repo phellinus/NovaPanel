@@ -2,14 +2,24 @@ import request from '@/utils/request';
 import type {
     ICreateDeptParams,
     ICreateMenuRequest,
+    ICreateRoleResponse,
     IDeleteDeptParams,
     IDeleteMenuRequest,
+    IDeleteRoleRequest,
     IDeptParams,
     IEditMenuRequest,
+    IEditRoleRequest,
     ILoginParams,
     IMenuParams,
+    IRoleRequest,
+    ISetRolePermissionResponse,
 } from '@/types';
-import type { IAllUserInfoResponse, IDeptListResponse, IMenuListResponse } from '@/types/list-types.ts';
+import type {
+    IAllUserInfoResponse,
+    IDeptListResponse,
+    IMenuListResponse,
+    IRoleListResponse,
+} from '@/types/list-types.ts';
 
 //登录接口
 export const Login = (data: ILoginParams) => {
@@ -50,4 +60,31 @@ export const deleteMenuData = (data: IDeleteMenuRequest) => {
 //编辑菜单
 export const updateMenuData = (data: IEditMenuRequest) => {
     return request.post('/menu/edit', data);
+};
+//查询角色
+export const getRoleListParams = (params: IRoleRequest) => {
+    return request.get<{
+        list: IRoleListResponse[];
+        page: {
+            pageNum: number;
+            pageSize: number;
+            total: number;
+        };
+    }>('/roles/list', params);
+};
+//编辑角色
+export const toEditRole = (data: IEditRoleRequest) => {
+    return request.post('/roles/edit', data);
+};
+//新增角色
+export const createRoleData = (data: ICreateRoleResponse) => {
+    return request.post('/roles/create', data);
+};
+//删除角色
+export const deleteRoleData = (data: IDeleteRoleRequest) => {
+    return request.post('/roles/delete', data);
+};
+//设置权限
+export const updateRoleData = (data: ISetRolePermissionResponse) => {
+    return request.post('/roles/update/permission', data);
 };

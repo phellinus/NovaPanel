@@ -54,3 +54,17 @@ export type IMenuListResponse = Omit<IMenuListChildResponse, 'menuCode'> & {
     children: IMenuListChildResponse[];
     path: string;
 };
+
+//角色列表响应参数
+export interface IRoleListResponse {
+    __v: number;
+    _id: string;
+    createId: number;
+    createTime: string;
+    permissionList: {
+        checkedKeys: string[];
+        halfCheckedKeys: string[];
+    };
+    roleName: string;
+    updateTime: string;
+}

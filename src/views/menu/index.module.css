@@ -64,6 +64,9 @@
 .table :global(.ant-table-empty .ant-empty-description){
     @apply text-slate-300;
 }
+.table :global(.ant-table-empty .ant-table-placeholder .ant-table-cell){
+    @apply bg-gradient-to-r from-[#102C5C] via-[#1A4E9F] to-[#102C5C] hover:bg-sky-900;
+}
 .actionButton{
     @apply inline-flex items-center justify-center rounded-xl !border-0 px-4 py-2 text-sm font-semibold tracking-wide text-white shadow-[0_15px_35px_rgba(18,115,212,0.28)] transition duration-200 ease-out hover:shadow-[0_20px_40px_rgba(18,115,212,0.45)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5CC4FF]/70 focus-visible:ring-offset-0;
 }

@@ -47,3 +47,32 @@ export interface IEditMenuRequest extends ICreateMenuRequest {
 export interface IDeleteMenuRequest {
     _id: string;
 }
+//获取角色列表请求参数
+export interface IRoleRequest {
+    pageNum?: number;
+    pageSize?: number;
+    roleName?: string;
+}
+//编辑角色请求参数
+export interface IEditRoleRequest {
+    _id: string;
+    action: string;
+    roleName: string;
+}
+//删除角色请求参数
+export interface IDeleteRoleRequest {
+    _id: string;
+}
+//新增角色请求参数
+export interface ICreateRoleResponse {
+    remark: string;
+    roleName: string;
+}
+//设置权限请求参数
+export interface ISetRolePermissionResponse {
+    _id: string;
+    permissionList: {
+        checkedKeys: string[];
+        halfCheckedKeys: string[];
+    };
+}
