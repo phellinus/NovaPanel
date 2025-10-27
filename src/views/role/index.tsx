@@ -1,13 +1,20 @@
-import type { FC } from 'react';
+import { type FC, useRef } from 'react';
 import styles from '@/views/role/index.module.css';
-import { Button, Form, Input, Space, Table, type TableColumnsType } from 'antd';
+import { Button, Form, Input, Modal, Space, Table, type TableColumnsType } from 'antd';
 import type { IRoleListResponse } from '@/types/list-types.ts';
-import { getRoleListParams } from '@/api';
+import { deleteRoleData, getRoleListParams } from '@/api';
 import type { IRoleRequest } from '@/types';
 import { useAntdTable } from 'ahooks';
+import { RolePopup } from '@/views/role/RolePopup.tsx';
+import { formatTime } from '@/utils/utils.ts';
+
+type PopHandle = {
+    open: (type: 'create' | 'update', data: IRoleListResponse | { _id: string }) => void;
+};
 
 const Role: FC = () => {
     const [form] = Form.useForm();
+    const rolePopupRef = useRef<PopHandle>(null);
     //获取角色列表
     const getRoleList = ({ current, pageSize }: { current: number; pageSize: number }, formData: IRoleRequest) => {
         return getRoleListParams({ ...formData, pageNum: current, pageSize: pageSize }).then((res) => {
@@ -23,11 +30,22 @@ const Role: FC = () => {
     });
     //编辑角色
     const handleEditRole = (role: IRoleListResponse) => {
-        console.log(role);
+        rolePopupRef.current?.open('update', role);
     };
     //删除角色
     const handleDeleteRole = (id: string) => {
-        console.log(id);
+        Modal.confirm({
+            title: '确认删除该角色吗？',
+            okText: '确认',
+            okType: 'danger',
+            onOk: () => {
+                deleteRoleData({
+                    _id: id,
+                }).then(() => {
+                    search.submit();
+                });
+            },
+        });
     };
     //设置权限
     const handleSetPermission = (id: string) => {
@@ -52,12 +70,14 @@ const Role: FC = () => {
             dataIndex: 'createTime',
             key: 'createTime',
             width: '200',
+            render: (time: string) => formatTime(time),
         },
         {
             title: '更新时间',
             dataIndex: 'updateTime',
             key: 'updateTime',
             width: '200',
+            render: (time: string) => formatTime(time),
         },
         {
             title: '操作',
@@ -111,11 +131,16 @@ const Role: FC = () => {
                 </Form>
                 <div className={styles.header}>
                     <div>角色管理</div>
-                    <button type='button' className={styles.buttonOne}>
+                    <button
+                        type='button'
+                        className={styles.buttonOne}
+                        onClick={() => rolePopupRef.current?.open('create', form.getFieldsValue())}
+                    >
                         新增
                     </button>
                 </div>
                 <Table className={styles.table} rowKey='_id' {...tableProps} columns={columns} />
+                <RolePopup ref={rolePopupRef} reload={search.submit} />
             </div>
         </>
     );
