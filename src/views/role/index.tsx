@@ -1,6 +1,6 @@
 import { type FC, useRef } from 'react';
 import styles from '@/views/role/index.module.css';
-import { Button, Form, Input, Modal, Space, Table, type TableColumnsType } from 'antd';
+import { Button, Form, Input, message, Modal, Space, Table, type TableColumnsType } from 'antd';
 import type { IRoleListResponse } from '@/types/list-types.ts';
 import { deleteRoleData, getRoleListParams } from '@/api';
 import type { IRoleRequest } from '@/types';
@@ -48,6 +48,7 @@ const Role: FC = () => {
                 }).then(() => {
                     search.submit();
                 });
+                message.success('删除成功');
             },
         });
     };

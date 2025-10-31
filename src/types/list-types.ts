@@ -89,6 +89,6 @@ export interface IUserListResponse {
     state?: number;
     userEmail?: string;
     userId: number;
-    userImg?: string;
+    userImg: string;
     userName?: string;
 }

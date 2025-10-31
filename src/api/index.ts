@@ -3,6 +3,7 @@ import type {
     ICreateDeptParams,
     ICreateMenuRequest,
     ICreateRoleResponse,
+    ICreateUserRequest,
     IDeleteDeptParams,
     IDeleteMenuRequest,
     IDeleteRoleRequest,
@@ -15,6 +16,7 @@ import type {
     IPageParams,
     IRoleRequest,
     ISetRolePermissionResponse,
+    IUpdateUserRequest,
     IUserListRequest,
 } from '@/types';
 import type {
@@ -107,4 +109,12 @@ export const getUserListData = (params: IUserListRequest) => {
 //删除用户
 export const deleteUserData = (data: IDeleteUserRequest) => {
     return request.post('/users/delete', data);
+};
+//添加用户
+export const createUserData = (data: ICreateUserRequest) => {
+    return request.post('/users/create', data);
+};
+//编辑用户
+export const updateUserData = (data: IUpdateUserRequest) => {
+    return request.post('/users/edit', data);
 };
