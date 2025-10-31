@@ -1,0 +1,89 @@
+@reference "tailwindcss";
+
+.header{
+    @apply px-4 py-3 box-border flex items-center justify-between rounded-full border border-white/10 bg-[#1273D4]/10;
+}
+.leftpart{
+    @apply flex items-center justify-between;
+}
+.buttonOne{
+    @apply cursor-pointer rounded-xl bg-[#1273D4] px-4 py-2 text-sm font-semibold text-white shadow-[0_15px_35px_rgba(18,115,212,0.35)] transition hover:bg-[#0F65BA];
+}
+.dangerButton{
+    @apply ml-2 cursor-pointer rounded-xl bg-red-600 px-4 py-2 text-sm font-semibold text-white shadow-[0_15px_35px_rgba(18,115,212,0.35)] transition hover:bg-red-400;
+}
+.table{
+    @apply mt-4  rounded-2xl border border-white/10 bg-gradient-to-br from-slate-950/80 via-slate-900/70 to-[#0E3C79]/60 text-white shadow-[0_24px_48px_rgba(9,24,64,0.45)] backdrop-blur;
+}
+.table :global(.ant-table){
+    @apply bg-transparent text-white;
+}
+.table :global(.ant-table-container){
+    @apply bg-transparent;
+}
+.table :global(.ant-table-thead > tr > th){
+    @apply border-0 border-b border-white/10 bg-transparent text-[0.75rem] uppercase tracking-[0.12em] text-slate-200 font-semibold;
+}
+.table :global(.ant-table-thead > tr > th),
+.table :global(.ant-table-thead > tr > th .ant-table-column-sorters),
+.table :global(.ant-table-thead > tr > th .ant-table-column-title){
+    @apply text-slate-100;
+    color: #e9f2ff !important;
+}
+.table :global(.ant-table-tbody > tr > td){
+    @apply border-0 border-b border-white/5 text-slate-100 align-middle;
+}
+.table :global(.ant-table-tbody > tr:nth-child(odd) > td){
+    @apply bg-white/5;
+}
+.table :global(.ant-table-tbody > tr:nth-child(even) > td){
+    @apply bg-white/0;
+}
+.table :global(.ant-table-tbody > tr.ant-table-row:hover > td),
+.table :global(.ant-table-tbody > tr.ant-table-row.ant-table-row-hover > td),
+.table :global(.ant-table-tbody > tr.ant-table-row.ant-table-row-selected > td){
+    @apply bg-[#1B4ECB]/40 text-white;
+    background-color: rgba(19, 55, 143, 0.4) !important;
+}
+.table :global(.ant-table-tbody > tr:last-child > td){
+    @apply border-b-0;
+}
+.table :global(.ant-table-placeholder .ant-table-cell){
+    @apply bg-transparent text-slate-300;
+}
+.table :global(.ant-table-empty .ant-table-placeholder){
+    @apply bg-transparent;
+}
+.table :global(.ant-table-empty .ant-table-placeholder .ant-table-cell){
+    @apply bg-transparent;
+}
+.table :global(.ant-table-empty .ant-table-placeholder .ant-empty),
+.table :global(.ant-table-empty .ant-table-placeholder .ant-empty-image),
+.table :global(.ant-table-empty .ant-table-placeholder .ant-empty-image svg){
+    @apply text-slate-300;
+    color: #cbd7ff !important;
+    fill: rgba(203, 215, 255, 0.8) !important;
+}
+.table :global(.ant-table-empty .ant-empty-image img){
+    filter: drop-shadow(0 0 8px rgba(45, 91, 182, 0.35));
+}
+.table :global(.ant-table-empty .ant-empty-description){
+    @apply text-slate-300;
+}
+.table :global(.ant-table-empty .ant-table-placeholder .ant-table-cell){
+    @apply bg-gradient-to-r from-[#102C5C] via-[#1A4E9F] to-[#102C5C] hover:bg-sky-900;
+}
+.actionButton{
+    @apply inline-flex items-center justify-center rounded-xl !border-0 px-4 py-2 text-sm font-semibold tracking-wide text-white shadow-[0_15px_35px_rgba(18,115,212,0.28)] transition duration-200 ease-out hover:shadow-[0_20px_40px_rgba(18,115,212,0.45)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5CC4FF]/70 focus-visible:ring-offset-0;
+}
+.label{
+    @apply text-slate-100;
+}
+.form{
+    @apply my-3 text-white;
+}
+.actionButtonDanger{
+    @apply bg-gradient-to-r from-[#F25C5C] via-[#EB3D3D] to-[#FF7A45] hover:from-[#F46D6D] hover:via-[#F24B4B] hover:to-[#FF8C5E] shadow-[0_15px_35px_rgba(244,96,96,0.28)] hover:shadow-[0_20px_42px_rgba(244,96,96,0.4)];
+    background-image: linear-gradient(110deg, #F25C5C 0%, #EB3D3D 45%, #FF7A45 100%) !important;
+    color: #FFF6F6 !important;
+}

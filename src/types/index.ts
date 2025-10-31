@@ -76,3 +76,11 @@ export interface ISetRolePermissionResponse {
         halfCheckedKeys: string[];
     };
 }
+//请求用户列表参数请求参数
+export interface IUserListRequest {
+    pageNum?: number;
+    pageSize?: number;
+    state?: number; //0：所有 1在职  2离职  3 试用期
+    userName?: string;
+    userId?: number;
+}

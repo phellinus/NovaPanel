@@ -13,6 +13,7 @@ import type {
     IMenuParams,
     IRoleRequest,
     ISetRolePermissionResponse,
+    IUserListRequest,
 } from '@/types';
 import type {
     IAllRoleListResponse,
@@ -20,6 +21,7 @@ import type {
     IDeptListResponse,
     IMenuListResponse,
     IRoleListResponse,
+    IUserListResponse,
 } from '@/types/list-types.ts';
 
 //登录接口
@@ -92,4 +94,15 @@ export const deleteRoleData = (data: IDeleteRoleRequest) => {
 //设置权限
 export const updateRoleData = (data: ISetRolePermissionResponse) => {
     return request.post('/roles/update/permission', data);
+};
+//获取用户列表
+export const getUserListData = (params: IUserListRequest) => {
+    return request.get<{
+        list: IUserListResponse[];
+        page: {
+            pageNum: number;
+            pageSize: number;
+            total: number;
+        };
+    }>('/users/list', params);
 };

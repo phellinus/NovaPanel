@@ -73,3 +73,22 @@ export interface IAllRoleListResponse {
     _id: string;
     roleName: string;
 }
+//用户列表响应
+export interface IUserListResponse {
+    __v: number;
+    createId: number;
+    createTime: string;
+    deptId: string;
+    deptName: string;
+    job: string;
+    lastLoginTime: string;
+    mobile: string;
+    role: number;
+    roleList: string;
+    sex?: number;
+    state: number;
+    userEmail: string;
+    userId: number;
+    userImg: string;
+    userName: string;
+}
