@@ -6,11 +6,13 @@ import type {
     IDeleteDeptParams,
     IDeleteMenuRequest,
     IDeleteRoleRequest,
+    IDeleteUserRequest,
     IDeptParams,
     IEditMenuRequest,
     IEditRoleRequest,
     ILoginParams,
     IMenuParams,
+    IPageParams,
     IRoleRequest,
     ISetRolePermissionResponse,
     IUserListRequest,
@@ -22,7 +24,7 @@ import type {
     IMenuListResponse,
     IRoleListResponse,
     IUserListResponse,
-} from '@/types/list-types.ts';
+} from '@/types/list-types';
 
 //登录接口
 export const Login = (data: ILoginParams) => {
@@ -99,10 +101,10 @@ export const updateRoleData = (data: ISetRolePermissionResponse) => {
 export const getUserListData = (params: IUserListRequest) => {
     return request.get<{
         list: IUserListResponse[];
-        page: {
-            pageNum: number;
-            pageSize: number;
-            total: number;
-        };
+        page: IPageParams;
     }>('/users/list', params);
+};
+//删除用户
+export const deleteUserData = (data: IDeleteUserRequest) => {
+    return request.post('/users/delete', data);
 };

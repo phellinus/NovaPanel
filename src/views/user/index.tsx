@@ -1,8 +1,7 @@
 import { type FC, useState } from 'react';
 import styles from '@/views/user/index.module.css';
-import { Button, Form, Input, Select, Space, Table, type TableColumnsType } from 'antd';
-import type { IRoleRequest } from '@/types';
-import { getUserListData } from '@/api';
+import { Button, Form, Input, message, Modal, Select, Space, Table, type TableColumnsType } from 'antd';
+import { deleteUserData, getUserListData } from '@/api';
 import { useAntdTable } from 'ahooks';
 import type { IUserListResponse } from '@/types/list-types.ts';
 import { formatTime } from '@/utils/utils.ts';
@@ -12,7 +11,7 @@ const User: FC = () => {
     const [form] = Form.useForm();
     const [userIds, setUserIds] = useState<number[]>([]);
     //获取角色列表
-    const getUserList = ({ current, pageSize }: { current: number; pageSize: number }, formData: IRoleRequest) => {
+    const getUserList = ({ current, pageSize }: { current: number; pageSize: number }, formData: IUserListResponse) => {
         return getUserListData({ ...formData, pageNum: current, pageSize: pageSize }).then((res) => {
             return {
                 list: res.list || [],
@@ -24,6 +23,26 @@ const User: FC = () => {
         form,
         defaultPageSize: 5,
     });
+    //批量删除用户数据
+    const deleteUserbyIds = (user: IUserListResponse | null = null) => {
+        if (userIds.length === 0) {
+            message.warning('请选择要删除的用户');
+            return;
+        }
+        Modal.confirm({
+            title: user ? `确认删除用户${user.userName}吗？` : '确认删除选中的用户吗？',
+            okText: '确认',
+            cancelText: '取消',
+            okType: 'danger',
+            onOk: () => {
+                deleteUserData({
+                    userIds: user ? [user.userId] : userIds,
+                }).then(() => {
+                    search.submit();
+                });
+            },
+        });
+    };
     //列表数据
     const columns: TableColumnsType<IUserListResponse> = [
         {
@@ -91,7 +110,11 @@ const User: FC = () => {
                         <Button type='primary' className={`${styles.actionButton} ${styles.actionButtonPrimary}`}>
                             编辑
                         </Button>
-                        <Button danger className={`${styles.actionButton} ${styles.actionButtonDanger}`}>
+                        <Button
+                            danger
+                            className={`${styles.actionButton} ${styles.actionButtonDanger}`}
+                            onClick={() => deleteUserbyIds(_record)}
+                        >
                             删除
                         </Button>
                     </Space>
@@ -132,7 +155,7 @@ const User: FC = () => {
                         <button type='button' className={styles.buttonOne}>
                             新增
                         </button>
-                        <button type='button' className={styles.dangerButton}>
+                        <button type='button' className={styles.dangerButton} onClick={() => deleteUserbyIds()}>
                             删除
                         </button>
                     </div>

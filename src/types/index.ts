@@ -9,6 +9,12 @@ export interface ILoginParams {
 export interface IDeptParams {
     deptName?: string;
 }
+//page请求参数
+export interface IPageParams {
+    pageNum: number;
+    pageSize: number;
+    total: number;
+}
 //侧边导航栏收缩状态
 export interface NavHeaderProps {
     collapsed: boolean;
@@ -83,4 +89,8 @@ export interface IUserListRequest {
     state?: number; //0：所有 1在职  2离职  3 试用期
     userName?: string;
     userId?: number;
+}
+//删除用户请求参数
+export interface IDeleteUserRequest {
+    userIds: number[];
 }
