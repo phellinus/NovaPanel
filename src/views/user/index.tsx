@@ -1,15 +1,22 @@
-import { type FC, useState } from 'react';
+import { type FC, useRef, useState } from 'react';
 import styles from '@/views/user/index.module.css';
 import { Button, Form, Input, message, Modal, Select, Space, Table, type TableColumnsType } from 'antd';
 import { deleteUserData, getUserListData } from '@/api';
 import { useAntdTable } from 'ahooks';
 import type { IUserListResponse } from '@/types/list-types.ts';
 import { formatTime } from '@/utils/utils.ts';
+import { UserPopup } from '@/views/user/userPopup.tsx';
 import * as React from 'react';
+
+interface UserHandle {
+    open: (type: 'create' | 'update', data?: IUserListResponse | { userId?: number }) => void;
+}
 
 const User: FC = () => {
     const [form] = Form.useForm();
     const [userIds, setUserIds] = useState<number[]>([]);
+    //用户弹窗
+    const userPopupRef = useRef<UserHandle>(null);
     //获取角色列表
     const getUserList = ({ current, pageSize }: { current: number; pageSize: number }, formData: IUserListResponse) => {
         return getUserListData({ ...formData, pageNum: current, pageSize: pageSize }).then((res) => {
@@ -25,7 +32,7 @@ const User: FC = () => {
     });
     //批量删除用户数据
     const deleteUserbyIds = (user: IUserListResponse | null = null) => {
-        if (userIds.length === 0) {
+        if (userIds.length === 0 && !user) {
             message.warning('请选择要删除的用户');
             return;
         }
@@ -107,7 +114,11 @@ const User: FC = () => {
             render: (_, _record) => {
                 return (
                     <Space>
-                        <Button type='primary' className={`${styles.actionButton} ${styles.actionButtonPrimary}`}>
+                        <Button
+                            type='primary'
+                            className={`${styles.actionButton} ${styles.actionButtonPrimary}`}
+                            onClick={() => userPopupRef.current?.open('update', _record)}
+                        >
                             编辑
                         </Button>
                         <Button
@@ -152,7 +163,11 @@ const User: FC = () => {
                 <div className={styles.header}>
                     <div>用户管理</div>
                     <div className={styles.leftpart}>
-                        <button type='button' className={styles.buttonOne}>
+                        <button
+                            type='button'
+                            className={styles.buttonOne}
+                            onClick={() => userPopupRef.current?.open('create')}
+                        >
                             新增
                         </button>
                         <button type='button' className={styles.dangerButton} onClick={() => deleteUserbyIds()}>
@@ -173,6 +188,7 @@ const User: FC = () => {
                     {...tableProps}
                     columns={columns}
                 />
+                <UserPopup ref={userPopupRef} reload={search.submit} />
             </div>
         </>
     );

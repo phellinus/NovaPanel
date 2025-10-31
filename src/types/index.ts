@@ -94,3 +94,17 @@ export interface IUserListRequest {
 export interface IDeleteUserRequest {
     userIds: number[];
 }
+//修改用户请求参数
+export interface IUpdateUserRequest {
+    deptId: string;
+    job: string;
+    mobile: string;
+    roleList: string;
+    state: number;
+    userEmail: string;
+    userId: number;
+    userImg: string;
+    userName: string;
+}
+//新增用户请求参数
+export type ICreateUserRequest = Omit<IUpdateUserRequest, 'userId'>;
