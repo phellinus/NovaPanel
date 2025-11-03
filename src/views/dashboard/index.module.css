@@ -1,5 +1,39 @@
 @reference "tailwindcss";
 
-.description{
+.top{
+    @apply flex items-center;
+}
+.avatar{
+    @apply rounded-full m-4;
+}
+.description {
+    @apply text-white flex-1 ;
+}
+
+.description :global(.ant-descriptions-title),
+.description :global(.ant-descriptions-item-label),
+.description :global(.ant-descriptions-item-content) {
     @apply text-white;
+}
+.content{
+    @apply flex items-center my-6 justify-around;
+}
+.datacenter{
+    @apply w-[200px] flex h-full flex-col items-start gap-3 cursor-pointer rounded-2xl border
+    border-white/10 bg-slate-900/30 p-6 text-left transition hover:border-[#1273D4]/40 hover:bg-slate-900/40;
+}
+.lineChart{
+    @apply h-[400px];
+}
+.pieChart{
+    @apply flex items-center;
+}
+.lineChart{
+    @apply h-[300px];
+}
+.roleChart{
+    @apply h-[300px];
+}
+.radarChart{
+    @apply h-[300px];
 }
