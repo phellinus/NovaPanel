@@ -6,6 +6,7 @@ import { formatTime } from '@/utils/utils.ts';
 import styles from '@/views/menu/index.module.css';
 import { CreateMenu } from '@/views/menu/createMenu.tsx';
 import * as Icons from '@ant-design/icons';
+import SearchForm from '@/components/SearchForm/SearchForm.tsx';
 
 type PopHandle = {
     open: (type: 'create' | 'update', data: IDeptListResponse | { parentId?: string }) => void;
@@ -177,7 +178,7 @@ const Menu: FC = () => {
     return (
         <>
             <div>
-                <Form className={styles.form} initialValues={{ menuState: '0' }} layout='inline' form={form}>
+                <SearchForm form={form} submit={getMenuList} initialValues={{ menuState: '0' }} reset={handleReset}>
                     <Form.Item
                         className='w-50'
                         name='menuState'
@@ -191,15 +192,7 @@ const Menu: FC = () => {
                             ))}
                         </Select>
                     </Form.Item>
-                    <Form.Item>
-                        <Button type='primary' className='mr-2' onClick={getMenuList}>
-                            查询
-                        </Button>
-                        <Button type='primary' onClick={handleReset}>
-                            重置
-                        </Button>
-                    </Form.Item>
-                </Form>
+                </SearchForm>
                 <div className={styles.header}>
                     <div>菜单管理</div>
                     <button

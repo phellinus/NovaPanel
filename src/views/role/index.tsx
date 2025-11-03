@@ -8,6 +8,7 @@ import { useAntdTable } from 'ahooks';
 import { RolePopup } from '@/views/role/RolePopup.tsx';
 import { SetPermissionPopup } from '@/views/role/setPermissionPopup.tsx';
 import { formatTime } from '@/utils/utils.ts';
+import SearchForm from '@/components/SearchForm/SearchForm.tsx';
 
 type PopHandle = {
     open: (type: 'create' | 'update', data: IRoleListResponse | { _id: string }) => void;
@@ -121,19 +122,11 @@ const Role: FC = () => {
     return (
         <>
             <div>
-                <Form className={styles.form} layout='inline' form={form}>
+                <SearchForm form={form} submit={search.submit} reset={search.reset}>
                     <Form.Item name='roleName' label={<span className={styles.label}>角色名称：</span>}>
                         <Input placeholder={'请输入角色名称'} />
                     </Form.Item>
-                    <Form.Item>
-                        <Button type='primary' className='mr-2' onClick={search.submit}>
-                            查询
-                        </Button>
-                        <Button type='primary' onClick={search.reset}>
-                            重置
-                        </Button>
-                    </Form.Item>
-                </Form>
+                </SearchForm>
                 <div className={styles.header}>
                     <div>角色管理</div>
                     <button

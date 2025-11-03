@@ -7,6 +7,7 @@ import type { IUserListResponse } from '@/types/list-types.ts';
 import { formatTime } from '@/utils/utils.ts';
 import { UserPopup } from '@/views/user/userPopup.tsx';
 import * as React from 'react';
+import SearchForm from '@/components/SearchForm/SearchForm.tsx';
 
 interface UserHandle {
     open: (type: 'create' | 'update', data?: IUserListResponse | { userId?: number }) => void;
@@ -136,7 +137,7 @@ const User: FC = () => {
     return (
         <>
             <div>
-                <Form className={styles.form} layout='inline' form={form} initialValues={{ status: 0 }}>
+                <SearchForm form={form} initialValues={{ status: 0 }} submit={search.submit} reset={search.reset}>
                     <Form.Item name='userId' label={<span className={styles.label}>用户ID：</span>}>
                         <Input placeholder={'请输入用户ID'} />
                     </Form.Item>
@@ -151,15 +152,7 @@ const User: FC = () => {
                             <Select.Option value={3}>试用期</Select.Option>
                         </Select>
                     </Form.Item>
-                    <Form.Item>
-                        <Button type='primary' className='mr-2' onClick={search.submit}>
-                            查询
-                        </Button>
-                        <Button type='primary' onClick={search.reset}>
-                            重置
-                        </Button>
-                    </Form.Item>
-                </Form>
+                </SearchForm>
                 <div className={styles.header}>
                     <div>用户管理</div>
                     <div className={styles.leftpart}>

@@ -5,6 +5,7 @@ import type { IDeptListResponse } from '@/types/list-types.ts';
 import { deleteDeptData, GetDeptListParams } from '@/api';
 import { Button, type TableColumnsType, Table, Space, Form, Input, Modal, message } from 'antd';
 import { formatTime } from '@/utils/utils.ts';
+import SearchForm from '@/components/SearchForm/SearchForm.tsx';
 
 type PopHandle = {
     open: (type: 'create' | 'update', data: IDeptListResponse | { parentId?: string }) => void;
@@ -119,19 +120,11 @@ export const Dept: FC = () => {
     return (
         <>
             <div>
-                <Form className={styles.form} layout='inline' form={form}>
+                <SearchForm form={form} submit={getDeptList} reset={handleReset}>
                     <Form.Item name='deptName' label={<span className={styles.label}>部门名称：</span>}>
                         <Input placeholder='请输入部门名称' />
                     </Form.Item>
-                    <Form.Item>
-                        <Button type='primary' className='mr-2' onClick={getDeptList}>
-                            查询
-                        </Button>
-                        <Button type='primary' onClick={handleReset}>
-                            重置
-                        </Button>
-                    </Form.Item>
-                </Form>
+                </SearchForm>
                 <div className={styles.header}>
                     <div>部门管理</div>
                     <button
