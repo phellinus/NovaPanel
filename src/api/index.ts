@@ -23,8 +23,12 @@ import type {
     IAllRoleListResponse,
     IAllUserInfoResponse,
     IDeptListResponse,
+    ILineData,
     IMenuListResponse,
+    IPieData,
+    IReportData,
     IRoleListResponse,
+    IUserInfoData,
     IUserListResponse,
 } from '@/types/list-types';
 
@@ -117,4 +121,28 @@ export const createUserData = (data: ICreateUserRequest) => {
 //编辑用户
 export const updateUserData = (data: IUpdateUserRequest) => {
     return request.post('/users/edit', data);
+};
+//获取用户的企业信息
+export const getReportData = () => {
+    return request.get<IReportData>('/order/dashboard/getReportData');
+};
+//获取折线表数据
+export const getLineData = () => {
+    return request.get<ILineData>('/order/dashboard/getLineData');
+};
+//获取饼图城市数据
+export const getPieCityData = () => {
+    return request.get<IPieData>('/order/dashboard/getPieCityData');
+};
+//获取饼图年龄数据
+export const getPieAgeData = () => {
+    return request.get<IPieData>('/order/dashboard/getPieAgeData');
+};
+//获取雷达图数据
+export const getRadarData = () => {
+    return request.get<IPieData>('/api/order/dashboard/getRadarData');
+};
+//获取用户信息
+export const getUserInfo = () => {
+    return request.get<IUserInfoData>('/api/users/getUserInfo');
 };

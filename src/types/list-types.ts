@@ -92,3 +92,41 @@ export interface IUserListResponse {
     userImg: string;
     userName?: string;
 }
+export interface IReportData {
+    cityNum: number;
+    driverCount: number;
+    orderCount: number;
+    totalMoney: number;
+}
+export interface ILineData {
+    label: string[];
+    order: number[];
+    money: number[];
+}
+export interface IPieData {
+    value: number;
+    name: string;
+}
+export interface IRadarData {
+    indicator: Array<{ name: string; max: number }>;
+    data: {
+        name: string;
+        value: number[];
+    };
+}
+//用户信息响应参数
+export interface IUserInfoData {
+    _id: string;
+    createId: number;
+    deptId: string;
+    deptName: string;
+    job: string;
+    mobile: string;
+    role: number;
+    roleList: string;
+    state: number;
+    userEmail: string;
+    userId: number;
+    userImg: string;
+    userName: string;
+}

@@ -1,5 +1,5 @@
 import styles from '@/layout/header/index.module.css';
-import { LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined, SettingOutlined } from '@ant-design/icons';
+import { CrownOutlined, LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import { Dropdown, message, Space } from 'antd';
 import type { MenuProps } from 'antd/lib';
 import { useNavigate } from 'react-router-dom';
@@ -12,8 +12,8 @@ const items: MenuProps['items'] = [
         key: 'setting',
         label: (
             <div>
-                <SettingOutlined className='pr-2' />
-                系统设置
+                <CrownOutlined className='pr-2' />
+                个人中心
             </div>
         ),
     },
@@ -32,7 +32,8 @@ export default function NavHeader({ collapsed, setCollapsed }: NavHeaderProps) {
     const nav = useNavigate();
     const operate = ({ key }: { key: string }) => {
         if (key == 'setting') {
-            // 系统设置
+            // 个人中心
+            nav('/info');
         } else if (key === 'logout') {
             // 退出登录
             nav('/login');

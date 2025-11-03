@@ -1,6 +1,6 @@
 import styles from '@/layout/menu/index.module.css';
-import {Menu} from 'antd';
-import type {MenuProps} from 'antd/lib';
+import { Menu } from 'antd';
+import type { MenuProps } from 'antd/lib';
 import {
     AppstoreOutlined,
     LaptopOutlined,
@@ -10,8 +10,8 @@ import {
     UserOutlined,
 } from '@ant-design/icons';
 import * as React from 'react';
-import {useLocation, useNavigate} from "react-router-dom";
-import {useEffect} from "react";
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -32,7 +32,7 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-    getItem('Dashboard', '/dashboard', <PieChartOutlined />),
+    getItem('Dashboard', '/welcome', <PieChartOutlined />),
     getItem('用户模块', '/user', <MailOutlined />, [
         getItem('用户列表', '/userList', <UserOutlined />),
         getItem('菜单管理', '/menuList', <AppstoreOutlined />),
@@ -50,12 +50,12 @@ const SiderMenu = ({ collapsed }: { collapsed: boolean }) => {
     const nav = useNavigate();
     const location = useLocation();
     const [openKeys, setOpenKeys] = React.useState<string[]>([]);
-    const menuClick = ({ key }: { key: string}) => {
+    const menuClick = ({ key }: { key: string }) => {
         nav(key);
     };
-    const setOpenChange = (openKeys: string[]) =>{
+    const setOpenChange = (openKeys: string[]) => {
         setOpenKeys(openKeys);
-    }
+    };
     useEffect(() => {
         const currentPath = location.pathname;
         const parentKey = parentMap[currentPath];

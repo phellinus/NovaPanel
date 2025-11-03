@@ -2,6 +2,7 @@ import { createBrowserRouter, Navigate } from 'react-router-dom';
 import LoginPage from '../views/login';
 import HomePage from '../views/home';
 import Welcome from '../views/welcome';
+import Dashboard from '@/views/dashboard';
 import LayoutContainer from '@/layout';
 import { Dept } from '@/views/dept';
 import Role from '@/views/role';
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard',
                 element: <Welcome />,
+            },
+            {
+                path: '/info',
+                element: <Dashboard />,
             },
         ],
     },
