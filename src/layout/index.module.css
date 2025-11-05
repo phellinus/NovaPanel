@@ -1,22 +1,28 @@
 @reference "tailwindcss";
 
 .layout {
-    @apply relative h-screen w-screen p-0 box-border m-0;
+    @apply relative box-border m-0 h-screen w-screen overflow-hidden bg-[var(--app-bg)] transition-colors duration-300;
 }
 .header{
-    @apply px-0 py-0;
+    @apply px-0 py-0 bg-transparent;
 }
 .sider{
-    @apply p-0 box-border m-0;
+    @apply box-border m-0 p-0 bg-[var(--app-bg-secondary)] text-[var(--app-text-primary)] transition-colors duration-300;
+    @apply dark:bg-[var(--app-muted-surface)] dark:text-[var(--app-text-primary)];
 }
 .layoutContent{
-    /*background-color: var(--dark-home-bg-color);*/
-    @apply p-[20px] overflow-auto box-border flex flex-col ;
+    @apply box-border flex flex-col overflow-auto p-[20px] text-[var(--app-text-primary)] transition-colors duration-300;
     .wrapper{
-        @apply bg-gradient-to-br from-slate-950 via-[#0B1526] to-black text-[#E6EDF7] flex-1 relative mx-auto flex w-full flex-col rounded-3xl border border-white/10
-      p-3 shadow-[0_25px_60px_rgba(8,14,35,0.35)] backdrop-blur-[20px];
+        @apply relative mx-auto flex w-full flex-col flex-1 rounded-3xl border p-3 backdrop-blur-[20px] transition-all duration-300 ease-out;
+        @apply bg-[var(--app-card-gradient)] text-[var(--app-text-primary)] border-[var(--app-border)];
+        @apply dark:border-[var(--app-border)] dark:bg-[var(--app-card-gradient)] dark:text-[var(--app-text-primary)];
+        box-shadow: var(--app-card-shadow);
+        &:hover{
+            box-shadow: var(--app-card-shadow-hover);
+            transform: translateY(-2px);
+        }
     }
 }
 .footer{
-    @apply flex items-center justify-center text-center h-[50px] p-0;
+    @apply flex h-[50px] items-center justify-center bg-transparent p-0 text-center text-[var(--app-text-secondary)];
 }

@@ -1,1 +1,19 @@
 @import "tailwindcss";
+
+@layer base {
+    body {
+        @apply min-h-screen bg-[var(--app-bg)] text-[var(--app-text-primary)] antialiased transition-colors duration-300 ease-out;
+    }
+
+    .dark body {
+        @apply bg-[var(--app-bg)] text-[var(--app-text-primary)];
+    }
+
+    a {
+        @apply text-[var(--app-brand)] transition-colors duration-200;
+    }
+
+    .dark a {
+        @apply text-[var(--app-brand)];
+    }
+}

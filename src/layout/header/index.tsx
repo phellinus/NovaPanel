@@ -1,6 +1,6 @@
 import styles from '@/layout/header/index.module.css';
 import { CrownOutlined, LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
-import { Dropdown, message, Space } from 'antd';
+import { Dropdown, message, Space, Switch } from 'antd';
 import type { MenuProps } from 'antd/lib';
 import { useNavigate } from 'react-router-dom';
 import storage from '@/utils/storage.ts';
@@ -31,6 +31,13 @@ const items: MenuProps['items'] = [
 
 export default function NavHeader({ collapsed, setCollapsed }: NavHeaderProps) {
     const nav = useNavigate();
+    const isDark = useStore((state) => state.isDark);
+    const updateTheme = useStore((state) => state.updateTheme);
+    //改变主题颜色
+    const handleUpdateTheme = (checked: boolean) => {
+        if (checked === isDark) return;
+        updateTheme(checked);
+    };
     const operate = ({ key }: { key: string }) => {
         if (key == 'setting') {
             // 个人中心
@@ -50,11 +57,20 @@ export default function NavHeader({ collapsed, setCollapsed }: NavHeaderProps) {
                     className: 'trigger',
                     onClick: () => setCollapsed(!collapsed),
                 })}
-                <Dropdown menu={{ items, onClick: operate }}>
-                    <div className='cursor-pointer'>
-                        <Space>桑榆</Space>
-                    </div>
-                </Dropdown>
+                <div className={styles.navHeaderItem}>
+                    <Switch
+                        checkedChildren='暗黑'
+                        unCheckedChildren='光亮'
+                        checked={isDark}
+                        className={styles.switchButton}
+                        onChange={handleUpdateTheme}
+                    />
+                    <Dropdown menu={{ items, onClick: operate }}>
+                        <div className='cursor-pointer'>
+                            <Space>桑榆</Space>
+                        </div>
+                    </Dropdown>
+                </div>
             </div>
         </>
     );

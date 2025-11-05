@@ -4,6 +4,8 @@ import type { IUserInfoData } from '@/types/list-types.ts';
 
 interface UserStore {
     userInfo: IUserInfoData;
+    isDark: boolean;
+    updateTheme: (isDark: boolean) => void;
     updateUserInfo: (userInfo: IUserInfoData) => void;
 }
 
@@ -25,11 +27,16 @@ export const useStore = create<UserStore>()(
                 userImg: '',
                 userName: '',
             },
+            isDark: false,
             updateUserInfo: (userInfo: IUserInfoData) => set({ userInfo }),
+            updateTheme: (isDark: boolean) => set({ isDark }),
         }),
         {
             name: 'user-store',
-            partialize: (state: UserStore) => ({ userInfo: state.userInfo }), // 只保存 userInfo，不保存方法
+            partialize: (state: UserStore) => ({
+                userInfo: state.userInfo,
+                isDark: state.isDark,
+            }), // 只保存必要状态，不保存方法
         },
     ),
 );

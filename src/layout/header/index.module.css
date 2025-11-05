@@ -1,5 +1,23 @@
 @reference "tailwindcss";
 
 .navHeader{
-    @apply flex justify-between items-center px-[10px] text-[var(--dark-text-color)];
+    @apply flex items-center justify-between px-[16px] text-[var(--app-text-primary)] transition-colors duration-300;
+}
+.navHeaderItem{
+    @apply flex items-center gap-3 text-[var(--app-text-secondary)];
+}
+.switchButton{
+    @apply mr-[4px] bg-[var(--app-muted-surface)] transition-all duration-200;
+}
+
+.switchButton :global(.ant-switch){
+    @apply bg-[var(--app-muted-surface)];
+}
+
+.switchButton :global(.ant-switch-checked){
+    @apply bg-[var(--app-brand)];
+}
+
+.switchButton :global(.ant-switch-handle::before){
+    @apply bg-white;
 }

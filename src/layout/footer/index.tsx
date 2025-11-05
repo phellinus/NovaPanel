@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import styles from '@/layout/footer/index.module.css'
+import styles from '@/layout/footer/index.module.css';
 
 const NavFooter: FC = () => {
     return (

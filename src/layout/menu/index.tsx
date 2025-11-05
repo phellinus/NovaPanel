@@ -12,6 +12,7 @@ import {
 import * as React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import { useStore } from '@/store';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -50,6 +51,7 @@ const SiderMenu = ({ collapsed }: { collapsed: boolean }) => {
     const nav = useNavigate();
     const location = useLocation();
     const [openKeys, setOpenKeys] = React.useState<string[]>([]);
+    const isDark = useStore((state) => state.isDark);
     const menuClick = ({ key }: { key: string }) => {
         nav(key);
     };
@@ -73,12 +75,13 @@ const SiderMenu = ({ collapsed }: { collapsed: boolean }) => {
                     {!collapsed && '企业中台'}
                 </div>
                 <Menu
+                    className='border-0 bg-transparent text-[var(--app-text-primary)] transition-colors duration-300'
                     selectedKeys={[location.pathname]}
                     defaultSelectedKeys={openKeys}
                     onOpenChange={setOpenChange}
                     openKeys={openKeys}
                     mode='inline'
-                    theme='dark'
+                    theme={isDark ? 'dark' : 'light'}
                     inlineCollapsed={collapsed}
                     onClick={menuClick}
                     items={items}

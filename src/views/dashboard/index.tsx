@@ -172,26 +172,26 @@ const Dashboard: FC = () => {
             </div>
             <div className={style.content}>
                 <div className={style.datacenter}>
-                    <span className='text-lg font-medium text-white'>提交代码行数</span>
-                    <span className='text-sm leading-relaxed text-[#98B0C9]'>
+                    <span className='text-lg font-semibold text-[var(--app-text-primary)]'>提交代码行数</span>
+                    <span className='text-sm leading-relaxed text-[var(--app-text-secondary)]'>
                         {reportData?.codeLine + '行' || '暂无'}
                     </span>
                 </div>
                 <div className={style.datacenter}>
-                    <span className='text-lg font-medium text-white'>工资</span>
-                    <span className='text-sm leading-relaxed text-[#98B0C9]'>
+                    <span className='text-lg font-semibold text-[var(--app-text-primary)]'>工资</span>
+                    <span className='text-sm leading-relaxed text-[var(--app-text-secondary)]'>
                         {reportData?.salary + '元' || '暂无'}
                     </span>
                 </div>
                 <div className={style.datacenter}>
-                    <span className='text-lg font-medium text-white'>完成需求</span>
-                    <span className='text-sm leading-relaxed text-[#98B0C9]'>
+                    <span className='text-lg font-semibold text-[var(--app-text-primary)]'>完成需求</span>
+                    <span className='text-sm leading-relaxed text-[var(--app-text-secondary)]'>
                         {reportData?.icafeCount + '个' || '暂无'}
                     </span>
                 </div>
                 <div className={style.datacenter}>
-                    <span className='text-lg font-medium text-white'>项目数量</span>
-                    <span className='text-sm leading-relaxed text-[#98B0C9]'>
+                    <span className='text-lg font-semibold text-[var(--app-text-primary)]'>项目数量</span>
+                    <span className='text-sm leading-relaxed text-[var(--app-text-secondary)]'>
                         {reportData?.projectNum + '个' || '暂无'}
                     </span>
                 </div>

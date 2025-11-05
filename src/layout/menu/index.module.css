@@ -1,12 +1,13 @@
 @reference "tailwindcss";
 
 .navSide{
-    @apply w-full text-[var(--dark-color)] m-0;
+    @apply m-0 w-full bg-transparent text-[var(--app-text-primary)] transition-colors duration-300;
 }
 .logo{
-    @apply flex items-center justify-center text-[16px] bg-[var(--dark-logo-color)] text-white h-[50px]
-    leading-[50px] cursor-pointer my-[5px];
+    @apply my-[5px] flex h-[50px] cursor-pointer items-center justify-center rounded-2xl border text-[16px] leading-[50px] transition-all duration-300;
+    @apply bg-[var(--app-surface)] text-[var(--app-text-primary)] border-[var(--app-border)];
+    @apply dark:bg-[var(--app-muted-surface)] dark:text-[var(--app-text-primary)] dark:border-[var(--app-border)];
 }
 .img{
-    @apply w-[32px] h-[32px] mx-0 my-[16px]  mr-[10px];
+    @apply mx-0 my-[16px] mr-[10px] h-[32px] w-[32px];
 }

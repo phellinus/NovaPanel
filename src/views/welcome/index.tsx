@@ -25,7 +25,7 @@ const Welcome = () => {
                     <div className='space-y-6 lg:max-w-xl'>
                         <span className={styles.title}>Nova Console</span>
                         <div className='space-y-4'>
-                            <h1 className='text-4xl font-semibold leading-tight text-white lg:text-[42px]'>
+                            <h1 className='text-4xl font-semibold leading-tight text-[var(--app-text-primary)]  lg:text-[42px]'>
                                 欢迎回到 Nova 管理中心
                             </h1>
                             <p className='text-base leading-relaxed text-[#98B0C9]'>
@@ -50,10 +50,14 @@ const Welcome = () => {
                                     className='flex items-center justify-between rounded-xl bg-white/5 px-4 py-3 text-left'
                                 >
                                     <div>
-                                        <div className='text-sm font-medium text-white/85'>{item.label}</div>
+                                        <div className='text-sm font-medium text-[var(--app-text-primary)]'>
+                                            {item.label}
+                                        </div>
                                         <div className='mt-0.5 text-xs text-[#61758A]'>{item.trend}</div>
                                     </div>
-                                    <span className='text-2xl font-semibold text-white'>{item.value}</span>
+                                    <span className='text-2xl font-semibold text-[var(--app-text-primary)]'>
+                                        {item.value}
+                                    </span>
                                 </div>
                             ))}
                         </div>
@@ -67,7 +71,7 @@ const Welcome = () => {
                             <span className='rounded-full bg-[#1273D4]/15 px-3 py-1 text-xs font-semibold text-[#1273D4]'>
                                 Quick Start
                             </span>
-                            <span className='text-lg font-medium text-white'>{step.title}</span>
+                            <span className='text-lg font-medium text-[var(--app-text-primary)]'>{step.title}</span>
                             <span className='text-sm leading-relaxed text-[#98B0C9]'>{step.description}</span>
                         </button>
                     ))}

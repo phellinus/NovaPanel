@@ -86,7 +86,7 @@
     color: #FFF6F6 !important;
 }
 .label{
-    @apply text-slate-100;
+    @apply text-[var(--app-text-primary)];
 }
 .form{
     @apply my-3 text-white;

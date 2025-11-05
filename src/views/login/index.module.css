@@ -2,26 +2,48 @@
 
 /* Login view now uses inline Tailwind classes defined in the component. */
 .login{
-    @apply relative flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-950 via-[#0B1526] to-black px-6 py-10 text-[#E6EDF7];
+    @apply relative flex items-center justify-center min-h-screen dark:from-slate-950 dark:via-[#0B1526] dark:to-black dark:text-[var(--app-text-primary)];
     .content{
-        @apply relative z-10 flex w-full max-w-5xl overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-[0_25px_60px_rgba(8,14,35,0.35)] backdrop-blur;
+        @apply  bg-[var(--app-surface)] shadow-lg backdrop-blur transition-all duration-300;
+        @apply border-[var(--app-border)] shadow-[var(--app-card-shadow)];
+        @apply relative z-10 flex w-full max-w-5xl overflow-hidden rounded-3xl border dark:border-white/10 dark:bg-white/5 dark:shadow-[var(--app-card-shadow)];
         .aside{
-            @apply hidden flex-1 flex-col justify-between bg-gradient-to-br from-[#101C34]/95 via-[#0F1B2F]/80 to-[#060B17]/80 p-10 text-[#98B0C9] lg:flex;
+            @apply hidden flex-1 flex-col justify-between bg-gradient-to-br from-[var(--app-surface-subtle)] via-[var(--app-surface)] to-[var(--app-bg-secondary)] p-10 text-[var(--app-text-secondary)] transition-colors duration-300 lg:flex;
+            @apply dark:from-[#101C34]/95 dark:via-[#0F1B2F]/80 dark:to-[#060B17]/80 dark:text-[#98B0C9];
             .title{
-                @apply inline-flex items-center rounded-full border border-white/10 bg-[#1273D4]/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-[#98B0C9];
+                @apply inline-flex items-center rounded-full border px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-[var(--app-text-secondary)] transition-colors duration-300;
+                @apply border-[var(--app-border)] bg-[var(--app-muted-surface)];
+                @apply dark:border-white/10 dark:bg-[#1273D4]/10 dark:text-[#98B0C9];
             }
         }
         .main{
-            @apply flex w-full max-w-md flex-col gap-8 bg-slate-950/70 px-8 py-12 sm:px-10;
+            @apply flex w-full max-w-md flex-col gap-8 bg-white/80 px-8 py-12 text-[var(--app-text-primary)] transition-colors duration-300 sm:px-10;
             .title{
-                @apply inline-flex items-center justify-center self-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-[#61758A] lg:self-start;
+                @apply inline-flex items-center justify-center self-center rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-[var(--app-text-secondary)] transition-colors duration-300 lg:self-start;
+                @apply border-[var(--app-border)] bg-[var(--app-muted-surface)];
+                @apply dark:border-white/10 dark:bg-white/5 dark:text-[#61758A];
             }
             .input{
-                @apply h-12 rounded-xl border border-white/10 bg-white/5 text-sm text-white;
+                @apply h-12 rounded-xl border text-sm text-[var(--app-text-primary)] transition-colors duration-300;
             }
             .button{
-                @apply h-12 rounded-xl border-0 bg-[#1273D4] text-sm font-semibold text-white shadow-[0_15px_35px_rgba(18,115,212,0.35)] transition hover:bg-[#0F65BA];
+                @apply h-12 rounded-xl border-0 bg-[var(--app-brand)] text-sm font-semibold text-white shadow-[0_15px_35px_rgba(18,115,212,0.35)] transition hover:bg-[var(--app-brand-strong)];
             }
         }
     }
+}
+.switchButton{
+    @apply absolute top-[12px] right-[12px] mr-[4px] bg-[var(--app-muted-surface)] transition-all duration-200;
+}
+
+.switchButton :global(.ant-switch){
+    @apply bg-[var(--app-muted-surface)];
+}
+
+.switchButton :global(.ant-switch-checked){
+    @apply bg-[var(--app-brand)];
+}
+
+.switchButton :global(.ant-switch-handle::before){
+    @apply bg-white;
 }

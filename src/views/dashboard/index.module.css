@@ -1,55 +1,74 @@
 @reference "tailwindcss";
 
 .top{
-    @apply flex items-center;
+    @apply flex items-center gap-4;
 }
 .avatar{
-    @apply m-4 rounded-full border border-[#1273D4]/40 bg-gradient-to-br from-[#10254A] via-[#0B3A73] to-[#061A3A] text-[#66B2FF] shadow-lg shadow-[#061A3A]/50;
+    @apply m-4 rounded-full border-2 border-[var(--app-border-strong)] text-[var(--app-brand)] shadow-lg transition-transform duration-300;
+    background-image: var(--app-avatar-bg);
+    box-shadow: var(--app-card-shadow);
+    &:hover{
+        background-image: var(--app-avatar-bg-strong);
+        box-shadow: var(--app-card-shadow-hover);
+        transform: translateY(-2px);
+    }
 }
 .description {
-    @apply text-white flex-1 ;
+    @apply flex-1 text-[var(--app-text-primary)];
 }
 
 .description :global(.ant-descriptions-title),
 .description :global(.ant-descriptions-item-label),
 .description :global(.ant-descriptions-item-content) {
-    @apply text-white;
+    @apply text-[var(--app-text-primary)] dark:text-[var(--app-text-secondary)];
 }
 .content{
-    @apply flex items-center my-6 justify-around;
+    @apply my-6 flex flex-wrap items-stretch justify-around gap-4;
 }
 .datacenter{
-    @apply w-[200px] flex h-full flex-col items-start gap-3 cursor-pointer rounded-2xl border
-    border-white/10 bg-slate-900/30 p-6 text-left transition hover:border-[#1273D4]/40 hover:bg-slate-900/40;
+    @apply flex h-full w-[230px] flex-col items-start gap-3 cursor-pointer rounded-2xl border p-6 text-left transition-all duration-300;
+    @apply bg-[var(--app-surface-subtle)] text-[var(--app-text-primary)] border-[var(--app-border)];
+    box-shadow: var(--app-card-shadow);
+    &:hover{
+        box-shadow: var(--app-card-shadow-hover);
+        border-color: var(--app-border-strong);
+        transform: translateY(-2px);
+    }
 }
 .card{
-    @apply w-full overflow-hidden rounded-2xl border border-white/10 bg-slate-900/40 text-white backdrop-blur-md
-    shadow-lg shadow-[#061A3A]/50 transition hover:border-[#1273D4]/40 hover:shadow-[#0B3A73]/50;
+    @apply w-full overflow-hidden rounded-2xl border bg-[var(--app-surface)] text-[var(--app-text-primary)] backdrop-blur-md transition-all duration-300;
+    @apply border-[var(--app-border)];
+    box-shadow: var(--app-card-shadow);
+    &:hover{
+        box-shadow: var(--app-card-shadow-hover);
+        border-color: var(--app-border-strong);
+        transform: translateY(-2px);
+    }
 }
 .card :global(.ant-card-head){
-    @apply border-white/10 bg-transparent;
+    @apply border-[var(--app-border)] bg-transparent text-[var(--app-text-secondary)];
 }
 .card :global(.ant-card-head-title){
-    @apply text-white;
+    @apply text-[var(--app-text-primary)] dark:text-[var(--app-text-secondary)];
 }
 .card :global(.ant-card-extra){
-    @apply text-white;
+    @apply text-[var(--app-text-secondary)];
 }
 .card :global(.ant-card-body){
-    @apply bg-transparent text-white;
+    @apply bg-transparent text-[var(--app-text-primary)];
 }
 .lineChart{
-    @apply h-[400px];
+    @apply h-[400px] rounded-2xl border border-[var(--app-border)] bg-[var(--app-chart-surface)];
 }
 .pieChart{
-    @apply h-[300px] flex items-center;
+    @apply flex h-[300px] flex-wrap items-center gap-4;
 }
 .cityChart{
-    @apply h-[300px] flex-1;
+    @apply h-[300px] flex-1 rounded-2xl border border-[var(--app-border)] bg-[var(--app-chart-surface)];
 }
 .roleChart{
-    @apply h-[300px] flex-1;
+    @apply h-[300px] flex-1 rounded-2xl border border-[var(--app-border)] bg-[var(--app-chart-surface)];
 }
 .radarChart{
-    @apply h-[300px];
+    @apply h-[300px] rounded-2xl border border-[var(--app-border)] bg-[var(--app-chart-surface)];
 }
