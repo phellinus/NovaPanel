@@ -93,10 +93,10 @@ export interface IUserListResponse {
     userName?: string;
 }
 export interface IReportData {
-    cityNum: number;
-    driverCount: number;
-    orderCount: number;
-    totalMoney: number;
+    salary: number;
+    projectNum: number;
+    codeLine: number;
+    icafeCount: number;
 }
 export interface ILineData {
     label: string[];

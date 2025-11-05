@@ -26,6 +26,7 @@ import type {
     ILineData,
     IMenuListResponse,
     IPieData,
+    IRadarData,
     IReportData,
     IRoleListResponse,
     IUserInfoData,
@@ -140,9 +141,9 @@ export const getPieAgeData = () => {
 };
 //获取雷达图数据
 export const getRadarData = () => {
-    return request.get<IPieData>('/api/order/dashboard/getRadarData');
+    return request.get<IRadarData>('/order/dashboard/getRadarData');
 };
 //获取用户信息
-export const getUserInfo = () => {
-    return request.get<IUserInfoData>('/api/users/getUserInfo');
+export const getUserInfoData = () => {
+    return request.get<IUserInfoData>('/users/getUserInfo');
 };

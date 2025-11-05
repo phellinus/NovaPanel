@@ -33,7 +33,7 @@ const Welcome = () => {
                             </p>
                         </div>
                         <div className='flex flex-wrap items-center gap-4'>
-                            <button type='button' className={styles.buttonOne} onClick={() => nav('/')}>
+                            <button type='button' className={styles.buttonOne} onClick={() => nav('/info')}>
                                 进入仪表盘
                             </button>
                             <button type='button' className={styles.buttonTwo}>

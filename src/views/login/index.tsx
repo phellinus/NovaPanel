@@ -2,16 +2,21 @@ import { Button, Checkbox, type CheckboxProps, Form, Input, message } from 'antd
 import storage from '@/utils/storage';
 import styles from '@/views/login/index.module.css';
 import type { ILoginParams } from '@/types';
-import { Login } from '@/api';
+import { getUserInfoData, Login } from '@/api';
 import Bg from '@/components/bg';
 import { useNavigate } from 'react-router-dom';
+import { useStore } from '@/store';
 
 const LoginPage = () => {
     const [form] = Form.useForm();
     const nav = useNavigate();
+    const { updateUserInfo } = useStore();
     const onFinish = async (data: ILoginParams) => {
         const responseData = await Login(data);
         if (responseData) {
+            //获取用户数据
+            const res = await getUserInfoData();
+            updateUserInfo(res);
             storage.set('nova-token', responseData);
             message.success('登录成功');
             nav('/welcome');

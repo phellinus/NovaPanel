@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import storage from '@/utils/storage.ts';
 import * as React from 'react';
 import type { NavHeaderProps } from '@/types';
+import { useStore } from '@/store';
 
 const items: MenuProps['items'] = [
     {
@@ -38,6 +39,7 @@ export default function NavHeader({ collapsed, setCollapsed }: NavHeaderProps) {
             // 退出登录
             nav('/login');
             storage.remove('nova-token');
+            useStore.persist.clearStorage();
             message.success('退出登录成功');
         }
     };

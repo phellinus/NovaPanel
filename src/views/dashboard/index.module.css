@@ -26,13 +26,13 @@
     @apply h-[400px];
 }
 .pieChart{
-    @apply flex items-center;
+    @apply h-[300px] flex items-center;
 }
-.lineChart{
-    @apply h-[300px];
+.cityChart{
+    @apply h-[300px] flex-1;
 }
 .roleChart{
-    @apply h-[300px];
+    @apply h-[300px] flex-1;
 }
 .radarChart{
     @apply h-[300px];
