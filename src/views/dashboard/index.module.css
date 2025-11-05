@@ -4,7 +4,7 @@
     @apply flex items-center;
 }
 .avatar{
-    @apply rounded-full m-4;
+    @apply m-4 rounded-full border border-[#1273D4]/40 bg-gradient-to-br from-[#10254A] via-[#0B3A73] to-[#061A3A] text-[#66B2FF] shadow-lg shadow-[#061A3A]/50;
 }
 .description {
     @apply text-white flex-1 ;
@@ -21,6 +21,22 @@
 .datacenter{
     @apply w-[200px] flex h-full flex-col items-start gap-3 cursor-pointer rounded-2xl border
     border-white/10 bg-slate-900/30 p-6 text-left transition hover:border-[#1273D4]/40 hover:bg-slate-900/40;
+}
+.card{
+    @apply w-full overflow-hidden rounded-2xl border border-white/10 bg-slate-900/40 text-white backdrop-blur-md
+    shadow-lg shadow-[#061A3A]/50 transition hover:border-[#1273D4]/40 hover:shadow-[#0B3A73]/50;
+}
+.card :global(.ant-card-head){
+    @apply border-white/10 bg-transparent;
+}
+.card :global(.ant-card-head-title){
+    @apply text-white;
+}
+.card :global(.ant-card-extra){
+    @apply text-white;
+}
+.card :global(.ant-card-body){
+    @apply bg-transparent text-white;
 }
 .lineChart{
     @apply h-[400px];

@@ -195,16 +195,16 @@ const Dashboard: FC = () => {
                     </span>
                 </div>
             </div>
-            <Card title='消费流水' extra={<Button type='primary'>刷新</Button>} style={{ width: '100%' }}>
+            <Card title='消费流水' extra={<Button type='primary'>刷新</Button>} className={style.card}>
                 <div ref={lineRef} className={style.lineChart}></div>
             </Card>
-            <Card title='程序员分析' extra={<Button type='primary'>刷新</Button>} style={{ width: '100%' }}>
+            <Card title='程序员分析' extra={<Button type='primary'>刷新</Button>} className={style.card}>
                 <div className={style.pieChart}>
                     <div ref={pieCityRef} className={style.cityChart}></div>
                     <div ref={pieRoleRef} className={style.roleChart}></div>
                 </div>
             </Card>
-            <Card title='程序员分析' extra={<Button type='primary'>刷新</Button>} style={{ width: '100%' }}>
+            <Card title='程序员分析' extra={<Button type='primary'>刷新</Button>} className={style.card}>
                 <div ref={radarRef} className={style.radarChart}></div>
             </Card>
         </>
