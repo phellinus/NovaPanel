@@ -8,13 +8,18 @@ import { Dept } from '@/views/dept';
 import Role from '@/views/role';
 import User from '@/views/user';
 import Menu from '@/views/menu';
+import AuthLoader from '@/router/AuthLoader.ts';
+import NotFound from '@/notFound.tsx';
+import Page404 from '@/Page404.tsx';
 
 const router = createBrowserRouter([
     {
+        id: 'layout',
         element: <LayoutContainer />,
+        loader: AuthLoader,
         children: [
             {
-                path: '/welcome',
+                path: '/dashboard',
                 element: <Welcome />,
             },
             {
@@ -34,10 +39,6 @@ const router = createBrowserRouter([
                 element: <Dept />,
             },
             {
-                path: '/dashboard',
-                element: <Welcome />,
-            },
-            {
                 path: '/info',
                 element: <Dashboard />,
             },
@@ -45,7 +46,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/',
-        element: <Navigate to={'/welcome'} />,
+        element: <Navigate to={'/dashboard'} />,
     },
     {
         path: '/login',
@@ -54,6 +55,14 @@ const router = createBrowserRouter([
     {
         path: '/home',
         element: <HomePage />,
+    },
+    {
+        path: '/notfound',
+        element: <NotFound />,
+    },
+    {
+        path: '*',
+        element: <Page404 />,
     },
 ]);
 

@@ -1,3 +1,5 @@
+import type { IMenuListResponse } from '@/types/list-types.ts';
+
 export function formatTime(dateStr: string): string {
     if (!dateStr) return '';
 
@@ -11,4 +13,11 @@ export function formatTime(dateStr: string): string {
     const minute = String(date.getMinutes()).padStart(2, '0');
 
     return `${year}-${month}-${day} ${hour}:${minute}`;
+}
+
+//获取菜单的path
+export function getMenuPath(list: IMenuListResponse[]): string[] {
+    return list.reduce((res: string[], item: IMenuListResponse) => {
+        return res.concat(Array.isArray(item.children) && !item.buttons ? getMenuPath(item.children) : item.path || '');
+    }, []);
 }

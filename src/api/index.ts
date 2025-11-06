@@ -147,3 +147,7 @@ export const getRadarData = () => {
 export const getUserInfoData = () => {
     return request.get<IUserInfoData>('/users/getUserInfo');
 };
+//获取用户权限列表
+export const getUserPermissionList = () => {
+    return request.get<{ menuList: IMenuListResponse[]; buttonList: string[] }>('/users/getPermissionList');
+};

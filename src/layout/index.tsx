@@ -1,6 +1,6 @@
 import { Layout } from 'antd';
 import styles from '@/layout/index.module.css';
-import { Outlet } from 'react-router-dom';
+import { Navigate, Outlet, useLocation, useRouteLoaderData } from 'react-router-dom';
 import NavHeader from '@/layout/header';
 import NavFooter from '@/layout/footer';
 import { useState } from 'react';
@@ -10,6 +10,13 @@ const { Header, Footer, Sider, Content } = Layout;
 
 export default function LayoutContainer() {
     const [collapsed, setCollapsed] = useState(false);
+    //获取当前路由
+    const pathName = useLocation().pathname;
+    const data = useRouteLoaderData('layout');
+    const staticPath = ['/info'];
+    if (!staticPath.includes(pathName) && !data.menuPathLists.includes(pathName)) {
+        return <Navigate to='/notfound' />;
+    }
     return (
         <>
             <Layout className={styles.layout}>

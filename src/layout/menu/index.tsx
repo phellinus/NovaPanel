@@ -33,7 +33,7 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-    getItem('Dashboard', '/welcome', <PieChartOutlined />),
+    getItem('Dashboard', '/dashboard', <PieChartOutlined />),
     getItem('用户模块', '/user', <MailOutlined />, [
         getItem('用户列表', '/userList', <UserOutlined />),
         getItem('菜单管理', '/menuList', <AppstoreOutlined />),

@@ -21,7 +21,7 @@ const LoginPage = () => {
             updateUserInfo(res);
             storage.set('nova-token', responseData);
             message.success('登录成功');
-            nav('/welcome');
+            nav('/dashboard');
         }
     };
     const onChange: CheckboxProps['onChange'] = (e) => {
