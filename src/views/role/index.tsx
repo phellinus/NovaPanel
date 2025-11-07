@@ -1,6 +1,6 @@
 import { type FC, useRef } from 'react';
 import styles from '@/views/role/index.module.css';
-import { Button, Form, Input, message, Modal, Space, Table, type TableColumnsType } from 'antd';
+import { Form, Input, message, Modal, Space, Table, type TableColumnsType } from 'antd';
 import type { IRoleListResponse } from '@/types/list-types.ts';
 import { deleteRoleData, getRoleListParams } from '@/api';
 import type { IRoleRequest } from '@/types';
@@ -9,6 +9,7 @@ import { RolePopup } from '@/views/role/RolePopup.tsx';
 import { SetPermissionPopup } from '@/views/role/setPermissionPopup.tsx';
 import { formatTime } from '@/utils/utils.ts';
 import SearchForm from '@/components/SearchForm/SearchForm.tsx';
+import AuthButton from '@/components/AuthButton.tsx';
 
 type PopHandle = {
     open: (type: 'create' | 'update', data: IRoleListResponse | { _id: string }) => void;
@@ -93,27 +94,30 @@ const Role: FC = () => {
             render: (_, _record) => {
                 return (
                     <Space>
-                        <Button
+                        <AuthButton
+                            auth='role@edit'
                             type='primary'
                             className={`${styles.actionButton} ${styles.actionButtonPrimary}`}
                             onClick={() => handleEditRole(_record)}
                         >
                             编辑
-                        </Button>
-                        <Button
+                        </AuthButton>
+                        <AuthButton
+                            auth='role@setting'
                             type='primary'
                             className={`${styles.actionButton} ${styles.actionButtonSecondary}`}
                             onClick={() => handleSetPermission(_record)}
                         >
                             设置权限
-                        </Button>
-                        <Button
+                        </AuthButton>
+                        <AuthButton
+                            auth='role@delete'
                             danger
                             className={`${styles.actionButton} ${styles.actionButtonDanger}`}
                             onClick={() => handleDeleteRole(_record._id)}
                         >
                             删除
-                        </Button>
+                        </AuthButton>
                     </Space>
                 );
             },

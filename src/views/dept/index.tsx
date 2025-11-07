@@ -3,9 +3,10 @@ import styles from '@/views/dept/index.module.css';
 import { CreateDept } from '@/views/dept/createDept.tsx';
 import type { IDeptListResponse } from '@/types/list-types.ts';
 import { deleteDeptData, GetDeptListParams } from '@/api';
-import { Button, type TableColumnsType, Table, Space, Form, Input, Modal, message } from 'antd';
+import { type TableColumnsType, Table, Space, Form, Input, Modal, message } from 'antd';
 import { formatTime } from '@/utils/utils.ts';
 import SearchForm from '@/components/SearchForm/SearchForm.tsx';
+import AuthButton from '@/components/AuthButton.tsx';
 
 type PopHandle = {
     open: (type: 'create' | 'update', data: IDeptListResponse | { parentId?: string }) => void;
@@ -90,27 +91,30 @@ export const Dept: FC = () => {
             render: (_, _record) => {
                 return (
                     <Space>
-                        <Button
+                        <AuthButton
+                            auth='dept@edit'
                             type='primary'
                             className={`${styles.actionButton} ${styles.actionButtonPrimary}`}
                             onClick={() => editDept(_record)}
                         >
                             编辑
-                        </Button>
-                        <Button
+                        </AuthButton>
+                        <AuthButton
+                            auth='dept@create'
                             type='primary'
                             className={`${styles.actionButton} ${styles.actionButtonSecondary}`}
                             onClick={() => addDept(_record)}
                         >
                             新增
-                        </Button>
-                        <Button
+                        </AuthButton>
+                        <AuthButton
+                            auth='dept@delete'
                             danger
                             className={`${styles.actionButton} ${styles.actionButtonDanger}`}
                             onClick={() => deleteDept(_record)}
                         >
                             删除
-                        </Button>
+                        </AuthButton>
                     </Space>
                 );
             },
@@ -127,13 +131,14 @@ export const Dept: FC = () => {
                 </SearchForm>
                 <div className={styles.header}>
                     <div>部门管理</div>
-                    <button
+                    <AuthButton
+                        auth='dept@create'
                         type='button'
                         className={styles.buttonOne}
                         onClick={() => createDeptRef.current?.open('create', {})}
                     >
                         新增
-                    </button>
+                    </AuthButton>
                 </div>
                 <Table
                     loading={loading}

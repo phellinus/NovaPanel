@@ -1,6 +1,6 @@
 import { type FC, useRef, useState } from 'react';
 import styles from '@/views/user/index.module.css';
-import { Button, Form, Input, message, Modal, Select, Space, Table, type TableColumnsType } from 'antd';
+import { Form, Input, message, Modal, Select, Space, Table, type TableColumnsType } from 'antd';
 import { deleteUserData, getUserListData } from '@/api';
 import { useAntdTable } from 'ahooks';
 import type { IUserListResponse } from '@/types/list-types.ts';
@@ -8,6 +8,7 @@ import { formatTime } from '@/utils/utils.ts';
 import { UserPopup } from '@/views/user/userPopup.tsx';
 import * as React from 'react';
 import SearchForm from '@/components/SearchForm/SearchForm.tsx';
+import AuthButton from '@/components/AuthButton.tsx';
 
 interface UserHandle {
     open: (type: 'create' | 'update', data?: IUserListResponse | { userId?: number }) => void;
@@ -115,20 +116,22 @@ const User: FC = () => {
             render: (_, _record) => {
                 return (
                     <Space>
-                        <Button
+                        <AuthButton
+                            auth='user@edit'
                             type='primary'
                             className={`${styles.actionButton} ${styles.actionButtonPrimary}`}
                             onClick={() => userPopupRef.current?.open('update', _record)}
                         >
                             编辑
-                        </Button>
-                        <Button
+                        </AuthButton>
+                        <AuthButton
+                            auth='user@delete'
                             danger
                             className={`${styles.actionButton} ${styles.actionButtonDanger}`}
                             onClick={() => deleteUserbyIds(_record)}
                         >
                             删除
-                        </Button>
+                        </AuthButton>
                     </Space>
                 );
             },
@@ -156,16 +159,22 @@ const User: FC = () => {
                 <div className={styles.header}>
                     <div>用户管理</div>
                     <div className={styles.leftpart}>
-                        <button
+                        <AuthButton
+                            auth='user@create'
                             type='button'
                             className={styles.buttonOne}
                             onClick={() => userPopupRef.current?.open('create')}
                         >
                             新增
-                        </button>
-                        <button type='button' className={styles.dangerButton} onClick={() => deleteUserbyIds()}>
+                        </AuthButton>
+                        <AuthButton
+                            auth='user@delete'
+                            type='button'
+                            className={styles.dangerButton}
+                            onClick={() => deleteUserbyIds()}
+                        >
                             删除
-                        </button>
+                        </AuthButton>
                     </div>
                 </div>
                 <Table

@@ -45,7 +45,6 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 const getTreeMenu = (menuList: IMenuListResponse[]): MenuItem[] => {
-    console.log('menuList ref changed?', menuList);
     return menuList
         .filter((item: IMenuListResponse) => item.menuState === 1 && item.menuType === 1)
         .map((item: IMenuListResponse) => {
@@ -72,7 +71,6 @@ const SiderMenu = ({ collapsed }: { collapsed: boolean }) => {
     const isDark = useStore((state) => state.isDark);
     const { menuList } = useRouteLoaderData('layout');
     const items = React.useMemo(() => getTreeMenu(menuList || []), [menuList]);
-    console.log(items);
     const menuClick = ({ key }: { key: string }) => {
         nav(key);
     };

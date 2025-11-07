@@ -1,12 +1,13 @@
 import { type FC, useEffect, useRef, useState } from 'react';
 import type { IDeptListResponse, IMenuListResponse } from '@/types/list-types.ts';
-import { Button, Form, message, Modal, Select, Space, Table, type TableColumnsType } from 'antd';
+import { Form, message, Modal, Select, Space, Table, type TableColumnsType } from 'antd';
 import { deleteMenuData, getMenuListParams } from '@/api';
 import { formatTime } from '@/utils/utils.ts';
 import styles from '@/views/menu/index.module.css';
 import { CreateMenu } from '@/views/menu/createMenu.tsx';
 import * as Icons from '@ant-design/icons';
 import SearchForm from '@/components/SearchForm/SearchForm.tsx';
+import AuthButton from '@/components/AuthButton.tsx';
 
 type PopHandle = {
     open: (type: 'create' | 'update', data: IDeptListResponse | { parentId?: string }) => void;
@@ -148,27 +149,30 @@ const Menu: FC = () => {
             render: (_, _record) => {
                 return (
                     <Space>
-                        <Button
+                        <AuthButton
+                            auth='menu@edit'
                             type='primary'
                             className={`${styles.actionButton} ${styles.actionButtonPrimary}`}
                             onClick={() => editMenu(_record)}
                         >
                             编辑
-                        </Button>
-                        <Button
+                        </AuthButton>
+                        <AuthButton
+                            auth='menu@create'
                             type='primary'
                             className={`${styles.actionButton} ${styles.actionButtonSecondary}`}
                             onClick={() => addMenu(_record)}
                         >
                             新增
-                        </Button>
-                        <Button
+                        </AuthButton>
+                        <AuthButton
+                            auth='menu@delete'
                             danger
                             className={`${styles.actionButton} ${styles.actionButtonDanger}`}
                             onClick={() => deleteMenu(_record)}
                         >
                             删除
-                        </Button>
+                        </AuthButton>
                     </Space>
                 );
             },
@@ -195,13 +199,14 @@ const Menu: FC = () => {
                 </SearchForm>
                 <div className={styles.header}>
                     <div>菜单管理</div>
-                    <button
+                    <AuthButton
+                        auth='menu@create'
                         type='button'
                         className={styles.buttonOne}
                         onClick={() => createDeptRef.current?.open('create', {})}
                     >
                         新增
-                    </button>
+                    </AuthButton>
                 </div>
                 <Table
                     loading={loading}
