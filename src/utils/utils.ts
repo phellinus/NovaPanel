@@ -18,6 +18,25 @@ export function formatTime(dateStr: string): string {
 //获取菜单的path
 export function getMenuPath(list: IMenuListResponse[]): string[] {
     return list.reduce((res: string[], item: IMenuListResponse) => {
-        return res.concat(Array.isArray(item.children) && !item.buttons ? getMenuPath(item.children) : item.path || '');
+        return res.concat(
+            Array.isArray(item.children) && !item.buttons
+                ? getMenuPath(item.children as IMenuListResponse[])
+                : item.path || '',
+        );
     }, []);
 }
+
+//获取面包屑节点
+export const findTreeNode = (treeData: IMenuListResponse[], pathName: string, path: string[]): string[] => {
+    if (!treeData) return [];
+    for (let item of treeData) {
+        path.push(item.menuName);
+        if (item.path == pathName) return path;
+        if (item.children?.length) {
+            const list = findTreeNode(item.children as IMenuListResponse[], pathName, path);
+            if (list.length) return list;
+        }
+        path.pop();
+    }
+    return [];
+};

@@ -7,6 +7,7 @@ import storage from '@/utils/storage.ts';
 import * as React from 'react';
 import type { NavHeaderProps } from '@/types';
 import { useStore } from '@/store';
+import { BreadCrumb } from '@/layout/header/BreadCrumb.tsx';
 
 const items: MenuProps['items'] = [
     {
@@ -53,10 +54,13 @@ export default function NavHeader({ collapsed, setCollapsed }: NavHeaderProps) {
     return (
         <>
             <div className={styles.navHeader}>
-                {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-                    className: 'trigger',
-                    onClick: () => setCollapsed(!collapsed),
-                })}
+                <div className='flex '>
+                    {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+                        className: 'trigger mr-4',
+                        onClick: () => setCollapsed(!collapsed),
+                    })}
+                    <BreadCrumb />
+                </div>
                 <div className={styles.navHeaderItem}>
                     <Switch
                         checkedChildren='暗黑'
