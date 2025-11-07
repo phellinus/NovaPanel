@@ -10,9 +10,7 @@ import { useStore } from '@/store';
 const LoginPage = () => {
     const [form] = Form.useForm();
     const nav = useNavigate();
-    const { updateUserInfo } = useStore();
-    const isDark = useStore((state) => state.isDark);
-    const updateTheme = useStore((state) => state.updateTheme);
+    const { updateUserInfo, isDark, updateTheme } = useStore();
     const onFinish = async (data: ILoginParams) => {
         const responseData = await Login(data);
         if (responseData) {

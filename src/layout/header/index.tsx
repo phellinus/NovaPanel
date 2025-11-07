@@ -43,10 +43,10 @@ export default function NavHeader({ collapsed, setCollapsed }: NavHeaderProps) {
             // 个人中心
             nav('/info');
         } else if (key === 'logout') {
-            // 退出登录
-            nav('/login');
             storage.remove('nova-token');
             useStore.persist.clearStorage();
+            // 退出登录
+            nav('/login');
             message.success('退出登录成功');
         }
     };

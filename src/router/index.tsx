@@ -8,7 +8,7 @@ import { Dept } from '@/views/dept';
 import Role from '@/views/role';
 import User from '@/views/user';
 import Menu from '@/views/menu';
-import AuthLoader from '@/router/AuthLoader.ts';
+import AuthLoader, { LoginLoader } from '@/router/AuthLoader.ts';
 import NotFound from '@/notFound.tsx';
 import Page404 from '@/Page404.tsx';
 
@@ -50,6 +50,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/login',
+        loader: LoginLoader,
         element: <LoginPage />,
     },
     {
