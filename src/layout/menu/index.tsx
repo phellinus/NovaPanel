@@ -3,6 +3,7 @@ import { Menu } from 'antd';
 import type { MenuProps } from 'antd/lib';
 import {
     AppstoreOutlined,
+    DesktopOutlined,
     LaptopOutlined,
     MailOutlined,
     PieChartOutlined,
@@ -10,9 +11,10 @@ import {
     UserOutlined,
 } from '@ant-design/icons';
 import * as React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useRouteLoaderData } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useStore } from '@/store';
+import type { IMenuListResponse } from '@/types/list-types.ts';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -32,15 +34,31 @@ function getItem(
     } as MenuItem;
 }
 
-const items: MenuItem[] = [
-    getItem('Dashboard', '/dashboard', <PieChartOutlined />),
-    getItem('用户模块', '/user', <MailOutlined />, [
-        getItem('用户列表', '/userList', <UserOutlined />),
-        getItem('菜单管理', '/menuList', <AppstoreOutlined />),
-        getItem('角色管理', '/roleList', <SolutionOutlined />),
-        getItem('部门管理', '/deptList', <LaptopOutlined />),
-    ]),
-];
+const iconMap: Record<string, React.ReactNode> = {
+    PieChartOutlined: <PieChartOutlined />,
+    MailOutlined: <MailOutlined />,
+    AppstoreOutlined: <AppstoreOutlined />,
+    SolutionOutlined: <SolutionOutlined />,
+    LaptopOutlined: <LaptopOutlined />,
+    UserOutlined: <UserOutlined />,
+    DesktopOutlined: <DesktopOutlined />,
+};
+
+const getTreeMenu = (menuList: IMenuListResponse[]): MenuItem[] => {
+    console.log('menuList ref changed?', menuList);
+    return menuList
+        .filter((item: IMenuListResponse) => item.menuState === 1 && item.menuType === 1)
+        .map((item: IMenuListResponse) => {
+            return getItem(
+                item.menuName,
+                item.path || item._id,
+                iconMap[item.icon || ''] || undefined,
+                item.children && item.children.length > 0 && item.orderBy == 1
+                    ? getTreeMenu(item.children as IMenuListResponse[])
+                    : undefined,
+            );
+        });
+};
 const parentMap: Record<string, string> = {
     '/userList': '/user',
     '/menuList': '/user',
@@ -52,6 +70,9 @@ const SiderMenu = ({ collapsed }: { collapsed: boolean }) => {
     const location = useLocation();
     const [openKeys, setOpenKeys] = React.useState<string[]>([]);
     const isDark = useStore((state) => state.isDark);
+    const { menuList } = useRouteLoaderData('layout');
+    const items = React.useMemo(() => getTreeMenu(menuList || []), [menuList]);
+    console.log(items);
     const menuClick = ({ key }: { key: string }) => {
         nav(key);
     };
